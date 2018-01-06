@@ -3,7 +3,7 @@
     <reg-header></reg-header>
     <div class="input-container">
       <div class="username-con input-con">
-        <input type="text" class="username input" placeholder="请输入你的账号">
+        <input type="text" class="username input" placeholder="请输入你的账号" maxlength="11">
       </div>
       <div class="password-con input-con">
         <input type="text" class="password input" placeholder="请输入你的密码">
