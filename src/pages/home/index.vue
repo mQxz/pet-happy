@@ -1,5 +1,7 @@
 <template>
-  <div>index</div>
+  <div class="page-main">
+    <div class="header"></div>
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,11 @@
   }
 </script>
 
-<style scoped>
-  
+<style scoped lang="stylus">
+  .page-main
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
 </style>
