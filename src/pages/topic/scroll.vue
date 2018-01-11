@@ -28,7 +28,6 @@ export default {
   name: 'scroll',
   data () {
     return {
-      imgUrl: '',
       list: []
     }
   },
@@ -71,6 +70,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+@import '../../assets/styles/common/mixins.styl'
 .scroller
   flex: 1
   overflow: hidden
@@ -92,6 +92,7 @@ export default {
         font-size: .32rem
         font-weight: 600
         color: #333
+        ellipsis()
       .item-span
         font-size: .3rem
         color: #ccc

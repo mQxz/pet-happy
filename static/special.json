@@ -1,0 +1,56 @@
+{
+    "msgCode": 1,
+    "data": {
+        "list": [
+            {
+                "id":"0001",
+                "imgUrl":"http://img3.imgtn.bdimg.com/it/u=2337557546,3853217561&fm=27&gp=0.jpg",
+                "title": "2017过去了，宠友们都有话说",
+                "type": "一周宠友精选",
+                "messageNum": "4543"
+            },
+            {
+                "id":"0002",
+                "imgUrl":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3997110786,2272827437&fm=200&gp=0.jpg",
+                "title": "“胶带障碍”测智商，结果竟是这样的",
+                "type": "一周宠友精选",
+                "messageNum": "834"
+            },
+            {
+                "id":"0003",
+                "imgUrl":"http://img3.imgtn.bdimg.com/it/u=2337557546,3853217561&fm=27&gp=0.jpg",
+                "title": "谷登营养补充剂试用",
+                "type": "一周宠友精选",
+                "messageNum": "12"
+            },
+            {
+                "id":"0004",
+                "imgUrl":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3997110786,2272827437&fm=200&gp=0.jpg",
+                "title": "每天一声早晚安",
+                "type": "一周宠友精选",
+                "messageNum": "123"
+            },
+            {
+                "id":"0005",
+                "imgUrl":"http://img3.imgtn.bdimg.com/it/u=2337557546,3853217561&fm=27&gp=0.jpg",
+                "title": "我们一起来拔河",
+                "type": "一周宠友精选",
+                "messageNum": "342"
+            },
+            {
+                "id":"0006",
+                "imgUrl":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3997110786,2272827437&fm=200&gp=0.jpg",
+                "title": "跳过主人的手圈",
+                "type": "一周宠友精选",
+                "messageNum": "342"
+            },
+            {
+                "id":"0007",
+                "imgUrl":"http://img3.imgtn.bdimg.com/it/u=2337557546,3853217561&fm=27&gp=0.jpg",
+                "title": "2017过去了，宠友们都有话说",
+                "type": "一周宠友精选",
+                "messageNum": "342"
+            }  
+        ]
+    }
+}
