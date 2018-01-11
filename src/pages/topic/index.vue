@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <common-header :title="title"></common-header>
     <topic-scroll></topic-scroll>
   </div>
@@ -24,6 +24,14 @@ export default {
 
 <style scoped lang="stylus">
 @import '../../assets/styles/common/varibles.styl'
+.main
+  display: flex
+  flex-direction: column
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
 </style>
 
 
