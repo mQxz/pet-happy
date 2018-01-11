@@ -37,8 +37,8 @@ export default new Router({
       name: 'article',
       component: Article
     }, {
-      path: '/certification',
-      name: 'certification',
+      path: '/cert',
+      name: 'cert',
       component: Certification
     }
   ]

@@ -1,7 +1,7 @@
 <template>
   <div class="scroller" ref="scroll">
     <ul>
-      <li class="content" v-for="item in list" :key="item.id">
+      <li class="content" v-for="(item, index) in list" :key="index">
         <div class="content-img">
             <img :src="item.imgUrl" alt="">
         </div>
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getListData () {
-      axios.get('/api/special.json')
+      axios.get('/api/community/special.json')
       .then(this.getListDataSucc.bind(this))
       .catch(this.getListDataError.bind(this))
     },
@@ -73,7 +73,6 @@ export default {
   overflow: hidden
   background: #f5f5f5
   .content
-    height: 4.4rem
     background: #fff
     margin: .28rem
     border-radius: .2rem

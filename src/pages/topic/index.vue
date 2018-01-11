@@ -9,7 +9,7 @@
 import CommonHeader from 'components/header'
 import TopicScroll from './scroll'
 export default {
-  name: 'topic',
+  name: 'topicPage',
   components: {
     CommonHeader,
     TopicScroll

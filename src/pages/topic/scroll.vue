@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getListData () {
-      axios.get('/api/topicList.json')
+      axios.get('/api/community/topicList.json')
       .then(this.getListDataSucc.bind(this))
       .catch(this.getListDataError.bind(this))
     },

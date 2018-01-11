@@ -9,7 +9,7 @@
 import CommonHeader from 'components/header'
 import SpecialCon from './content'
 export default {
-  name: 'topic',
+  name: 'specialPage',
   components: {
     CommonHeader,
     SpecialCon
