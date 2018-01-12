@@ -1,0 +1,83 @@
+{
+  "msgCode": "1",
+  "data": {
+    "slider": [
+      {
+        "id": "0001",
+        "imgUrl": "http://img.boqiicdn.com/Data/U/P/img62315983d1427213c.jpg"
+      },
+      {
+        "id": "0002",
+        "imgUrl": "http://img.boqiicdn.com/Data/U/P/img984590afc51d75f3.jpg"
+      },
+      {
+        "id": "0003",
+        "imgUrl": "http://img.boqiicdn.com/Data/U/P/img8259597aa385747e4.jpg"
+      },
+      {
+        "id": "0004",
+        "imgUrl": "http://img.boqiicdn.com/Data/U/P/img984590afc51d75f3.jpg"
+      },
+      {
+        "id": "0005",
+        "imgUrl": "http://img.boqiicdn.com/Data/U/P/img8259597aa385747e4.jpg"
+      }
+    ],
+    "userList": [
+      {
+        "id": "0001",
+        "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
+        "username": "植树的fay",
+        "title": "指数的缅甸兄弟",
+        "province": "浙江",
+        "city": "嘉兴",
+        "imgUrl": "http://p1.ycw.com/share/201706/15/d61a0e92e5204dcfb273dce381fc2e16_s600"
+      },
+      {
+        "id": "0002",
+        "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
+        "username": "植树的fay",
+        "title": "指数的缅甸兄弟",
+        "province": "浙江",
+        "city": "嘉兴",
+        "imgUrl": "http://p1.ycw.com/share/201706/15/501fb3398f82612dba76c0ce537da1d9_s600"
+      },
+      {
+        "id": "0003",
+        "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
+        "username": "植树的fay",
+        "title": "指数的缅甸兄弟",
+        "province": "浙江",
+        "city": "嘉兴",
+        "imgUrl": "http://p1.ycw.com/share/201706/15/d61a0e92e5204dcfb273dce381fc2e16_s600"
+      },
+      {
+        "id": "0004",
+        "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
+        "username": "植树的fay",
+        "title": "指数的缅甸兄弟",
+        "province": "浙江",
+        "city": "嘉兴",
+        "imgUrl": "http://p1.ycw.com/share/201706/15/501fb3398f82612dba76c0ce537da1d9_s600"
+      },
+      {
+        "id": "0005",
+        "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
+        "username": "植树的fay",
+        "title": "指数的缅甸兄弟",
+        "province": "浙江",
+        "city": "嘉兴",
+        "imgUrl": "http://p1.ycw.com/share/201706/15/d61a0e92e5204dcfb273dce381fc2e16_s600"
+      },
+      {
+        "id": "0006",
+        "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
+        "username": "植树的fay",
+        "title": "指数的缅甸兄弟",
+        "province": "浙江",
+        "city": "嘉兴",
+        "imgUrl": "http://p1.ycw.com/share/201706/15/501fb3398f82612dba76c0ce537da1d9_s600"
+      }
+    ]
+  }
+}
