@@ -16,6 +16,12 @@ module.exports = {
         pathRewrite: {
           '^/api/community': '/static'
         }
+      },
+      '/api/user': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/api/user': '/static'
+        }
       }
     },
 

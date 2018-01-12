@@ -102,9 +102,11 @@ export default {
           flex-direction: column
           justify-content: space-around
           .icon-name
+            width: 4rem
             font-size: $FontBigSize
             font-weight: bold
             color: #558bad
+            ellipsis()
           .icon-time
             font-size: $FontSmallSize
             color: $FontLightColor
@@ -120,9 +122,9 @@ export default {
     .item-detail
       padding-bottom: .3rem
       .detail-img
-        height: 3.2rem
+        shake(46%)
         .img-url
-          height: 100%
+          height: 3.4rem
           width: 100%
       .detail-des
         .des
@@ -131,9 +133,11 @@ export default {
         .des-title
           font-size: $FontBigSize
           font-weight: bold
+          ellipsis()
         .des-subname
           font-size: $FontSmallSize
           color: $FontLightColor
+          ellipsis()
     .item-bottom
       display: flex
       justify-content: space-between

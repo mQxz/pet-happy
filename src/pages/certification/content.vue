@@ -88,6 +88,8 @@ export default {
         .icon-name
           font-size: $FontBigSize
           color: #333
+          width: 4rem
+          ellipsis()
         .detail-con
           font-size: .24rem
           color: $FontLightColor
