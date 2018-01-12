@@ -1,6 +1,11 @@
 <template>
   <div class="page-main">
 
+    <div class="check-notice" v-show="loginNotice">
+      <span class="iconfont notice-icon">&#xe60e;</span>
+      <p>用户名或密码错误</p>
+    </div>
+
     <div class="header">
       <div class="close iconfont">&#xe600;</div>
     </div>
@@ -14,16 +19,16 @@
     <div class="input-container">
       <div class="username-con input-con">
         <i class="iconfont input-icon">&#xe601;</i>
-        <input type="text" class="username input" placeholder="请输入你的账号">
+        <input type="text" class="username input" placeholder="请输入你的账号" v-model="username">
       </div>
       <div class="password-con input-con">
         <i class="iconfont input-icon">&#xe6a1;</i>
-        <input type="text" class="password input" placeholder="请输入你的密码">
+        <input type="text" class="password input" placeholder="请输入你的密码" v-model="password">
       </div>
       <div class="forget-pass">
         <span class="forget-txt">忘记密码?</span>
       </div>
-      <input type="button" class="submit-btn" value="登录">
+      <input type="button" class="submit-btn" value="登录" @click="handleLogin">
     </div>
 
     <div class="third-container">
@@ -41,8 +46,37 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
-    name: 'login'
+    name: 'login',
+    data () {
+      return {
+        loginNotice: false,
+        username: '',
+        password: ''
+      }
+    },
+    methods: {
+      handleLogin () {
+        axios.get('api/login.json')
+          .then(this.handleLoginSucc.bind(this))
+          .catch(this.handleLoginErr.bind(this))
+      },
+      handleLoginSucc (res) {
+        res && (res = res.data)
+        if (res.msgCode === '1') {
+          console.log('succ')
+        } else if (res.msgCode === '2') {
+          this.loginNotice = true
+          setTimeout(() => {
+            this.loginNotice = false
+          }, 2000)
+        }
+      },
+      handleLoginErr () {
+        console.log('服务器内部错误')
+      }
+    }
   }
 </script>
 
@@ -55,6 +89,22 @@
     bottom: 0
     left: 0
     background: $bgColor
+    .check-notice
+      z-index: 2
+      position: absolute
+      width: 3rem
+      height: 2.5rem
+      top: 50%
+      left: 50%
+      line-height: 1.2rem
+      text-align: center
+      transform: translate(-50%, -50%)
+      font-size: .3rem
+      color: #fff
+      border-radius: .2rem
+      background: rgba(0, 0, 0, .6)
+      .notice-icon
+        font-size: .7rem
     .header
       height: .88rem
       line-height: .88rem
