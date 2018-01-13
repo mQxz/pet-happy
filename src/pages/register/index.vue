@@ -26,7 +26,10 @@
         @blur="handleCodeBlur">
         <button class="get-code" @click="handleGetCodeClick">获取验证码</button>
       </div>
-      <div class="error" v-show="error" ref="error">*</div>
+      <div class="error" v-show="error">
+        <span class="iconfont notice-icon">&#xe60e;</span>
+        <p class="error-msg" ref="error">错误提示</p>
+      </div>
       <div class="register-submit">
         <p class="title">注册账户表示您同意《pet乐用户协议》条款</p>
         <input type="button"
@@ -63,8 +66,7 @@ export default {
         this.error = false
         console.log(this.username)
       } else {
-        this.error = true
-        this.$refs.error.innerHTML = '*您输入的手机号格式有误'
+        this.handleErrorMsg('您输入的手机号格式有误')
       }
     },
 
@@ -76,8 +78,7 @@ export default {
         this.error = false
         console.log(this.password)
       } else {
-        this.error = true
-        this.$refs.error.innerHTML = '* 密码为6~12为字母数字或符号组合'
+        this.handleErrorMsg('密码为6~12字母、数字或符号组合')
       }
     },
 
@@ -97,16 +98,14 @@ export default {
       }
     },
     handleGetCodeErr () {
-      this.error = true
-      this.$refs.error.innerHTML = '* 系统繁忙，请稍后重试'
+      this.handleErrorMsg('系统繁忙，请稍后重试')
     },
     handleCodeBlur () {
       var code = this.$refs.code.value
       if (code === this.authCode) {
         this.error = false
       } else {
-        this.error = true
-        this.$refs.error.innerHTML = '* 验证码填写错误！'
+        this.handleErrorMsg('验证码填写错误！')
       }
     },
     handleRegClick () {
@@ -119,15 +118,32 @@ export default {
         }).then(this.handleRegSucc.bind(this))
           .catch(this.handleRegErr.bind(this))
       } else {
-        this.error = true
-        this.$refs.error.innerHTML = '* 请将信息填写完整'
+        this.handleErrorMsg('请将信息填写完整')
       }
     },
     handleRegSucc (res) {
-      console.log(res)
+      console.log(res.data)
+      res = res ? res.data : null
+      if (res.msgCode === 1 && res.data) {
+        this.handleErrorMsg('注册成功')
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 2000)
+      } else if (res.msgCode === 0) {
+        this.handleErrorMsg('用户名已被注册')
+      } else {
+        this.handleRegErr()
+      }
     },
     handleRegErr () {
-      console.log('err')
+      this.handleErrorMsg('系统繁忙，请重新注册')
+    },
+    handleErrorMsg (msg) {
+      this.error = true
+      this.$refs.error.innerHTML = msg
+      setTimeout(() => {
+        this.error = false
+      }, 2000)
     }
   }
 }
@@ -174,10 +190,21 @@ export default {
           border-radius: .1rem
           margin-right: .1rem
       .error
-        width: 100%
+        z-index: 2
+        position: absolute
+        top: 50%
+        left: 50%
         text-align: center
-        line-height: .64rem
-        color: red
+        padding: .2rem
+        transform: translate(-50%, -50%)
+        font-size: .3rem
+        color: #fff
+        border-radius: .2rem
+        background: rgba(0, 0, 0, .6)
+        .notice-icon
+          font-size: .7rem
+        .error-msg
+          line-height: .5rem
       .register-submit
         width: 100%
         display: flex
