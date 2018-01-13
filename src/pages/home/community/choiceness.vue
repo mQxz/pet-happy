@@ -51,16 +51,10 @@
 
           <div class="like-con">
             <div class="like-img-con">
-              <div class="like-icon">
-                <img :src="item.usericon" class="like-img">
+              <div class="like-icon" v-for="likeItem of item.usericons" :key="likeItem.id">
+                <img :src="likeItem.iconUrl" class="like-img">
               </div>
-              <div class="like-icon">
-                <img :src="item.usericon" class="like-img">
-              </div>
-              <div class="like-icon">
-                <img :src="item.usericon" class="like-img">
-              </div>
-              <span class="like-num">170 赞</span>
+              <span class="like-num">{{item.likeNumber}} 赞</span>
             </div>
             <div class="like-sper">
               <span class="iconfont like-sper-icon">&#xe64c;</span>
@@ -69,19 +63,10 @@
           </div>
 
           <div class="comment">
-            <div class="comment-item">
-              <span class="commentator">老姚</span><span class="comment-txt">：早上好呀</span>
+            <div class="comment-item"  v-for="value of item.commentList" :key="value.id">
+              <span class="commentator">{{value.username}}</span><span class="comment-txt">：{{value.text}}</span>
             </div>
-            <div class="comment-item">
-              <span class="commentator">老姚</span><span class="comment-txt">：早上好呀</span>
-            </div>
-            <div class="comment-item">
-              <span class="commentator">老姚</span><span class="comment-txt">：早上好呀</span>
-            </div>
-            <div class="comment-item">
-              <span class="commentator">老姚</span><span class="comment-txt">：早上好呀</span>
-            </div>
-            <div class="comment-item total">查看所有<span class="comment-num">83</span>条评论</div>
+            <div class="comment-item total">查看所有<span class="comment-num">{{item.number}}</span>条评论</div>
           </div>
         </div>
       </div>
@@ -105,6 +90,7 @@
         swiperOption: {
           autoplay: 3000,
           loop: true,
+          initialSlide: 1,
           observer: true,
           observeParents: true
         }

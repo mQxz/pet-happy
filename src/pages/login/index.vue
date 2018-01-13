@@ -58,7 +58,7 @@
     },
     methods: {
       handleLogin () {
-        axios.get('api/login.json')
+        axios.get('/api/user/login.json')
           .then(this.handleLoginSucc.bind(this))
           .catch(this.handleLoginErr.bind(this))
       },

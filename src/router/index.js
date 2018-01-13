@@ -15,10 +15,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: Index
-    },
-    {
       redirect: '/community'
     },
     {

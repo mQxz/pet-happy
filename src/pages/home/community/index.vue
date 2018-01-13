@@ -57,13 +57,13 @@
       },
       handleGetChoicenessData () {
         this.isShow = true
-        axios.get('api/choiceness.json')
+        axios.get('/api/community/choiceness.json')
           .then(this.handleGetChoicenessDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDynamicData () {
         this.isShow = false
-        axios.get('api/dynamic.json')
+        axios.get('/api/community/dynamic.json')
           .then(this.handleGetDynamicDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       }
