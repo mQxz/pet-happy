@@ -1,0 +1,41 @@
+{
+    "msgCode": 1,
+    "data": {
+        "list": [{
+            "id": "0001",
+            "title": "脱毛",
+            "content": "狗狗为什么掉毛",
+            "cate": "养护",
+            "look": "3432",
+            "imgUrl": "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=416160078,4249346239&fm=5"
+        },{
+            "id": "0002",
+            "title": "狗狗的脱毛症状",
+            "content": "狗狗最近无精打采，而且身上的毛没有光泽",
+            "cate": "养护",
+            "look": "121",
+            "imgUrl": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2038406380,317017081&fm=5"
+        },{
+            "id": "0003",
+            "title": "乱吃东西",
+            "content": "狗狗见什么吃什么",
+            "cate": "健康",
+            "look": "4232",
+            "imgUrl": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2300875363,445064071&fm=5"
+        },{
+            "id": "0004",
+            "title": "狗狗嗜睡",
+            "content": "狗狗特别喜欢睡觉，除了吃饭，其它时间都在睡觉",
+            "cate": "健康",
+            "look": "3422",
+            "imgUrl": "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1067412999,107277101&fm=5"
+        },{
+            "id": "0005",
+            "title": "拉肚子",
+            "content": "狗狗一直拉肚子，上吐下泻，怎么办",
+            "cate": "卫生",
+            "look": "343",
+            "imgUrl": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1998943435,2147113062&fm=27&gp=0.jpg"
+        }]
+    }
+}
