@@ -2,18 +2,24 @@
   <div class="mine">
     <div class="header">我的</div>
     <div class="main">
-      <div class="user border">
-        <div class="userinfo">
-          <div class="user-icon">
-            <img src="http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60" class="user-img">
+      <div class="user border-bottom">
+        <div class="user-box" v-show="isLogin">
+          <div class="userinfo">
+            <div class="user-icon">
+              <img src="http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60" class="user-img">
+            </div>
+            <div class="user-detail">
+              <p class="nickname">喝饮料爱咬吸管的少女</p>
+              <p class="account">账号：<span class="account-num">13552418897</span></p>
+            </div>
           </div>
-          <div class="user-detail">
-            <p class="nickname">喝饮料爱咬吸管的少女</p>
-            <p class="account">账号：<span class="account-num">13552418897</span></p>
+          <div class="person">
+            个人资料<span class="topage iconfont">&#xe631;</span>
           </div>
         </div>
-        <div class="person">
-          个人资料<span class="topage iconfont">&#xe631;</span>
+        <div class="login-res" v-show="!isLogin">
+          <router-link to="login" tag="div" class="login btn">登录</router-link>
+          <router-link to="register" tag="div" class="register btn">注册</router-link>
         </div>
       </div>
       <div class="set-con border-bottom">
@@ -56,6 +62,11 @@
   import IndexFooter from '../common/footer'
   export default {
     name: 'index',
+    data () {
+      return {
+        isLogin: false
+      }
+    },
     components: {
       IndexFooter
     }
@@ -82,32 +93,46 @@
     .main
       flex: 1
       .user
-        display: flex
-        justify-content: space-between
-        align-items: center
-        padding: .4rem .2rem
-        .userinfo
+        .user-box
           display: flex
           justify-content: space-between
-          .user-icon
-            overflow: hidden
-            width: 1.3rem
-            height: 0
-            padding-bottom: 1.3rem
-            border-radius: .65rem
-            .user-img
-              width: 100%
-          .user-detail
+          align-items: center
+          padding: .4rem .2rem
+          .userinfo
             display: flex
-            flex-direction: column
             justify-content: space-between
-            padding: .2rem
-            .nickname
-              font-size: .28rem
-            .account
-              color: #666
-        .person
-          color: #666
+            .user-icon
+              overflow: hidden
+              width: 1.3rem
+              height: 0
+              padding-bottom: 1.3rem
+              border-radius: .65rem
+              .user-img
+                width: 100%
+            .user-detail
+              display: flex
+              flex-direction: column
+              justify-content: space-between
+              padding: .2rem
+              .nickname
+                font-size: .28rem
+              .account
+                color: #666
+          .person
+            color: #666
+        .login-res
+          overflow: hidden
+          display: flex
+          justify-content: space-around
+          align-items: center
+          height: 1.3rem  
+          .btn
+            width: 1.5rem
+            line-height: .5rem
+            text-align: center
+            font-size: .3rem
+            border: .02rem solid #ff9300
+            border-radius: .5rem
     .set-con
       display: flex
       height: .78rem

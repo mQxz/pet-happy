@@ -34,14 +34,18 @@ export default {
       list: [],
       isLoading: false,
       isFetching: false,
-      isMsgCode: false
+      isMsgCode: false,
+      pageNum: 1,
+      pages: 1
     }
   },
   methods: {
     getListData () {
-      if (!this.isFetching) {
+      if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/api/community/special.json')
+        axios.get('/api/community/special.json', {
+          pageNum: this.pageNum
+        })
           .then(this.getListDataSucc.bind(this))
           .catch(this.getListDataError.bind(this))
       }
@@ -50,9 +54,9 @@ export default {
     getListDataSucc (res) {
       res = res ? res.data : null
       if (res.data && res.msgCode === 1) {
-        if (res.data.list) {
-          this.list = res.data.list
-        }
+        res.data.list && (this.list = res.data.list.concat(this.list))
+        res.data.pages && (this.pages = res.data.pages)
+        this.pageNum += 1
         this.isFetching = false
       } else {
         this.getListDataError()

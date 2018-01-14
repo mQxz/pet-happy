@@ -42,7 +42,7 @@
                 <span class="city">{{item.city}}</span>
               </div>
             </div>
-            <span class="attention">+ 关注</span>
+            <span class="attention" @click="handleAttentionClick">+ 关注</span>
           </div>
           <div class="title">{{item.title}}</div>
           <div class="item-img-con">
@@ -104,10 +104,23 @@
         return this.choiceness.userList
       }
     },
+    methods: {
+      handleAttentionClick (e) {
+        console.log(e.target)
+      },
+      refresh () {
+        this.$nextTick(() => {
+          this.scroller.refresh()
+        })
+      }
+    },
     mounted () {
       this.$nextTick(() => {
         this.scroller = new BScroll(this.$refs.wrapper)
       })
+    },
+    updated () {
+      this.scroller.refresh()
     }
   }
 </script>
@@ -116,12 +129,15 @@
   .wrapper
     height: 100%
     overflow: hidden
-    .img-con
-      overflow: hidden
+    .swiper-container
       height: 0
       padding-bottom: 44%
-      .slider-img
-        width: 100%
+      .img-con
+        overflow: hidden
+        height: 0
+        padding-bottom: 44%
+        .slider-img
+          width: 100%
     .icons
       height: 1.52rem
       background: #f5f5f5

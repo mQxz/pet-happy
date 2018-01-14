@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="header">
+    <router-link class="header" to="/" tag="div">
       <div class="close iconfont">&#xe600;</div>
-    </div>
+    </router-link>
     <div class="reg-container">
       <div class="reg-img-con">
         <img src="../../assets/styles/img/logox2.png" alt="register" class="reg-img">
