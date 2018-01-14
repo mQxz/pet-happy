@@ -133,9 +133,7 @@ export default {
       }
     },
     handleRegSucc (res) {
-      console.log(res.data)
-      res = res ? res.data : null
-      if (res.msgCode === 1 && res.data) {
+      if (res.msgCode === 1) {
         this.handleErrorMsg('注册成功')
         setTimeout(() => {
           this.$router.push('/')
@@ -144,12 +142,14 @@ export default {
         this.handleErrorMsg('用户名已被注册')
       } else if (res.msgCode === 3) {
         this.handleErrorMsg('您的昵称被人捷足先登')
+      } else if (res.msgCode === 0) {
+        this.handleErrorMsg('验证码错误')
       } else {
         this.handleRegErr()
       }
     },
     handleRegErr () {
-      this.handleErrorMsg('验证码错误')
+      this.handleErrorMsg('系统繁忙，请稍后重试')
     },
     handleErrorMsg (msg) {
       this.error = true
