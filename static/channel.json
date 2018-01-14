@@ -1,0 +1,62 @@
+{
+  "msgCode": "1",
+  "data": {
+    "classify": ["46", "23", "68", "54", "178", "96"],
+    "list": [
+      {
+        "id": "0001",
+        "usericon": "http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60",
+        "username": "极品二哈",
+        "lightTitle": "我要上精选",
+        "title": "以后夸我请用“俊”",
+        "imgUrl": [
+          "http://p1.ycw.com/share/201801/12/3e5e237c788990a2b46778a526fe601c_s600"
+        ],
+        "likeNumber": "5",
+        "commentNumber": "8"
+      },
+      {
+        "id": "0002",
+        "usericon": "http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60",
+        "username": "极品二哈",
+        "lightTitle": "我要上精选",
+        "title": "夏花绚烂，似水流连",
+        "imgUrl": [
+          "http://p1.ycw.com/share/201801/12/3e5e237c788990a2b46778a526fe601c_s600",
+          "http://p1.ycw.com/share/201801/12/704874f0eee3493d0596c9f1a550e1d4_s600",
+          "http://p1.ycw.com/share/201801/12/32e94f1dffdad6ca58a70dc434372e27_s600"
+        ],
+        "likeNumber": "5",
+        "commentNumber": "8"
+      },
+      {
+        "id": "0003",
+        "usericon": "http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60",
+        "username": "极品二哈",
+        "lightTitle": "我要上精选",
+        "title": "做最好的自己，被最好的人爱",
+        "imgUrl": [
+          "http://p1.ycw.com/share/201801/12/3e5e237c788990a2b46778a526fe601c_s600",
+          "http://p1.ycw.com/share/201801/12/be2b8f34c682a15d25ed612620d96cb6_s600"
+        ],
+        "likeNumber": "5",
+        "commentNumber": "8"
+      },
+      {
+        "id": "0004",
+        "usericon": "http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60",
+        "username": "极品二哈",
+        "lightTitle": "我要上精选",
+        "title": "来自帅狗子的真实自白",
+        "imgUrl": [
+          "http://p1.ycw.com/share/201801/12/3e5e237c788990a2b46778a526fe601c_s600",
+          "http://p1.ycw.com/share/201801/12/32e94f1dffdad6ca58a70dc434372e27_s600",
+          "http://p1.ycw.com/share/201706/15/d61a0e92e5204dcfb273dce381fc2e16_s600",
+          "http://p1.ycw.com/share/201801/12/e68c9de4da388375e62889390c19d882_s600"
+        ],
+        "likeNumber": "5",
+        "commentNumber": "8"
+      }
+    ]
+  }
+}

@@ -4,30 +4,35 @@
         &#xe62f;
         <span class="recommend-tlt">热帖推荐</span>
       </div>
-      <div class="list-group">
+
+      <div class="list-group" v-for="(item, index) of list" :key="index">
         <div class="group-header">
           <div class="usericon-con">
-            <img src="../../../assets/styles/img/classify-img/classify_1.png" class="usericon-img">
+            <img :src="item.usericon" class="usericon-img">
           </div>
-          <span class="username">茉莉</span>
+          <span class="username">{{item.username}}</span>
         </div>
         <div class="group-title">
-          <span class="title-notice">#<span>我要上精选</span>#</span>
-          宝宝要往外爬，妈妈的大长腿派上用场了
-          fhsdajfhakfhd
+          <span class="title-notice">#<span>{{item.lightTitle}}</span>#</span>
+          {{item.title}}
         </div>
         <div class="group-content">
+          <div :class="[item.imgUrl.length > 1 ? 'group-img-con-other' : 'group-img-con-1']" 
+               v-for="imgItem of item.imgUrl" 
+               :key="imgItem.id">
+            <img :src="imgItem" class="group-img">
+          </div>
         </div>
         <div class="group-footer">
           <div class="experience border">养宠心得</div>
           <div class="icons-con">
             <div class="like">
               <span class="iconfont experience-icon">&#xe64c;</span>
-              5
+              {{item.likeNumber}}
             </div>
             <div class="comment">
               <span class="iconfont experience-icon">&#xe6be;</span>
-              8
+              {{item.commentNumber}}
             </div>
           </div>
         </div>
@@ -37,7 +42,13 @@
 
 <script>
   export default {
-    name: 'channel-list'
+    name: 'channel-list',
+    props: {
+      list: {
+        type: Array,
+        require: true
+      }
+    }
   }
 </script>
 
@@ -80,6 +91,27 @@
         font-size: .26rem
         .title-notice
           color: $fontRedColor
+      .group-content
+        display: flex
+        justify-content: space-between
+        align-content: space-between
+        flex-wrap: wrap
+        width: 5.6rem
+        .group-img-con-1
+          overflow: hidden
+          width: 5.6rem
+          height: 0
+          padding-bottom: 5.6rem
+          .group-img
+            width: 100%
+        .group-img-con-other
+          overflow: hidden
+          width: 2.75rem
+          height: 0
+          padding-bottom: 2.05rem
+          margin-bottom: .1rem
+          .group-img
+            width: 100%
       .group-footer
         display: flex
         justify-content: space-between

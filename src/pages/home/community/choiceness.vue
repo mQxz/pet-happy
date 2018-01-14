@@ -10,22 +10,22 @@
 
       <div class="icons">
         <div class="icons-con">
-          <div class="icons-item topic">
+          <router-link to="/choiceness/topic" tag="div" class="icons-item topic">
             <img src="../../../assets/styles/img/icon_topic.png" class="icon">
             话题
-          </div>
-          <div class="icons-item spetopic">
+          </router-link>
+          <router-link to="/choiceness/special" tag="div" class="icons-item spetopic">
             <img src="../../../assets/styles/img/icon_spetopic.png" class="icon">
             专题
-          </div>
-          <div class="icons-item article">
+          </router-link>
+          <router-link to="/choiceness/article" tag="div" class="icons-item article">
             <img src="../../../assets/styles/img/icon_article.png" class="icon">
             文章
-          </div>
-          <div class="icons-item pzn">
+          </router-link>
+          <router-link to="/choiceness/cert" tag="div" class="icons-item pzn">
             <img src="../../../assets/styles/img/icon_pzn.png" class="icon">
             认证号
-          </div>
+          </router-link>
         </div>
       </div>
 
