@@ -3,8 +3,8 @@
     <index-header></index-header>
     <div class="page-content" ref="wrapper">
       <div>
-        <classify></classify>
-        <channel-list></channel-list>
+        <classify :classifyNum="classifyNum"></classify>
+        <channel-list :list="list"></channel-list>
       </div>
     </div>
     
@@ -23,7 +23,11 @@
     name: 'index',
     data () {
       return {
-        list: []
+        classifyNum: [],
+        list: [],
+        isLoading: false,
+        isFetching: false,
+        pageNum: 1
       }
     },
     components: {
@@ -33,28 +37,79 @@
       ChannelList
     },
     methods: {
-      handleGetDynamicDataSucc (res) {
+      getData () {
+        axios.get('/api/channel/channel.json', {
+          pageNum: this.pageNum
+        })
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
+      },
+      getMoreList () {
+        if (!this.isFetching) {
+          this.isFetching = true
+          axios.get('/api/channel/channel.json', {
+            pageNum: this.pageNum
+          })
+            .then(this.handleGetOtherDataSucc.bind(this))
+            .catch(this.handleGetOtherDataErr.bind(this))
+          console.log(this.pageNum)
+        }
+      },
+      createScroller () {
+        this.scroller = new BScroll(this.$refs.wrapper, {
+          probeType: 3
+        })
+      },
+      bindEvents () {
+        this.scroller.on('scroll', this.handleScroll.bind(this))
+        this.scroller.on('scrollEnd', this.handleScrollEnd.bind(this))
+      },
+      handleGetDataSucc (res) {
         res && (res = res.data)
         if (res && res.data) {
           if (res.msgCode === '1') {
-            res.data.list && (this.dynamic = res.data.list)
+            res.data.classify && (this.classifyNum = res.data.classify)
+            res.data.list && (this.list = res.data.list)
           }
         }
       },
       handleGetDataErr () {
         console.log('数据获取失败')
       },
-      handleGetDynamicData () {
-        this.isShow = false
-        axios.get('api/dynamic.json')
-          .then(this.handleGetDynamicDataSucc.bind(this))
-          .catch(this.handleGetDataErr.bind(this))
+      handleScroll (e) {
+        if ((e.y) < (this.scroller.maxScrollY + 100) && !this.isLoading) {
+          this.isLoading = true
+          this.getMoreList()
+        }
+      },
+      handleGetOtherDataSucc (res) {
+        res && (res = res.data)
+        if (res && res.data) {
+          if (res.msgCode === '1') {
+            res.data.list && (this.list = this.list.concat(res.data.list))
+            this.pageNum += 1
+          }
+        }
+        this.$nextTick(() => {
+          this.isFetching = false
+        })
+      },
+      handleGetOtherDataErr () {
+        this.isFetching = false
+        console.log('数据获取失败')
+      },
+      handleScrollEnd () {
+        this.isLoading = false
       }
     },
     mounted () {
       this.$nextTick(() => {
-        this.scroller = new BScroll(this.$refs.wrapper)
+        this.createScroller()
+        this.bindEvents()
       })
+    },
+    created () {
+      this.getData()
     }
   }
 </script>

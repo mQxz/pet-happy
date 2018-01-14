@@ -12,10 +12,10 @@
       <div class="iconfont footer-icon">&#xe858;</div>
       小贴士
     </div>
-    <div class="footer-item mine">
+    <router-link to="mine" tag="div" class="footer-item mine">
       <div class="iconfont footer-icon">&#xe640;</div>
       我的
-    </div>
+    </router-link>
   </div>
 </template>
 

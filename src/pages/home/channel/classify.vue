@@ -6,7 +6,7 @@
         <div class="mask"></div>
         <span class="title">美宠秀秀</span>
       </div>
-      <p>新增<span class="number">164</span>条内容</p>
+      <p>新增<span class="number">{{classifyNum[0]}}</span>条内容</p>
     </div>
     <div class="items">
       <div class="img-con">
@@ -14,7 +14,7 @@
         <div class="mask"></div>
         <span class="title">养宠心得</span>
       </div>
-      <p>新增<span class="number">164</span>条内容</p>
+      <p>新增<span class="number">{{classifyNum[1]}}</span>条内容</p>
     </div>
     <div class="items">
       <div class="img-con">
@@ -22,7 +22,7 @@
         <div class="mask"></div>
         <span class="title">剁手败家</span>
       </div>
-      <p>新增<span class="number">164</span>条内容</p>
+      <p>新增<span class="number">{{classifyNum[2]}}</span>条内容</p>
     </div>
     <div class="items">
       <div class="img-con">
@@ -30,7 +30,7 @@
         <div class="mask"></div>
         <span class="title">囧趣宠事</span>
       </div>
-      <p>新增<span class="number">164</span>条内容</p>
+      <p>新增<span class="number">{{classifyNum[3]}}</span>条内容</p>
     </div>
     <div class="items">
       <div class="img-con">
@@ -38,7 +38,7 @@
         <div class="mask"></div>
         <span class="title">美宠秀秀DIY</span>
       </div>
-      <p>新增<span class="number">164</span>条内容</p>
+      <p>新增<span class="number">{{classifyNum[4]}}</span>条内容</p>
     </div>
     <div class="items">
       <div class="img-con">
@@ -46,14 +46,20 @@
         <div class="mask"></div>
         <span class="title">时尚休闲</span>
       </div>
-      <p>新增<span class="number">164</span>条内容</p>
+      <p>新增<span class="number">{{classifyNum[5]}}</span>条内容</p>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'classify'
+    name: 'classify',
+    props: {
+      classifyNum: {
+        type: Array,
+        require: true
+      }
+    }
   }
 </script>
 
