@@ -9,6 +9,7 @@ import Topic from 'pages/topic/index'
 import Special from 'pages/special/index'
 import Article from 'pages/article/index'
 import Certification from 'pages/certification/index'
+import Mine from 'pages/home/mine/index'
 
 Vue.use(Router)
 
@@ -37,25 +38,29 @@ export default new Router({
       name: 'register',
       component: Register
     }, {
-      path: '/topic',
+      path: '/choiceness/topic',
       name: 'topic',
       component: Topic
     }, {
-      path: '/special',
+      path: '/choiceness/special',
       name: 'special',
       component: Special
     }, {
-      path: '/article',
+      path: '/choiceness/article',
       name: 'article',
       component: Article
     }, {
-      path: '/cert',
+      path: '/choiceness/cert',
       name: 'cert',
       component: Certification
     }, {
       path: '/tips',
       name: 'tips',
       component: Tips
+    }, {
+      path: '/mine',
+      name: 'mine',
+      component: Mine
     }
   ]
 })
