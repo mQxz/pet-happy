@@ -52,7 +52,6 @@
           })
             .then(this.handleGetOtherDataSucc.bind(this))
             .catch(this.handleGetOtherDataErr.bind(this))
-          console.log(this.pageNum)
         }
       },
       createScroller () {

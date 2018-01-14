@@ -6,9 +6,9 @@
       <p>用户名或密码错误</p>
     </div>
 
-    <div class="header">
+    <router-link to="/" class="header" tag="div">
       <div class="close iconfont">&#xe600;</div>
-    </div>
+    </router-link>
 
     <div class="logo-container">
       <div class="logo-img-con">
@@ -26,6 +26,7 @@
         <input type="text" class="password input" placeholder="请输入你的密码" v-model="password">
       </div>
       <div class="forget-pass">
+        <router-link to="register" tag="span" class="register">注册</router-link>
         <span class="forget-txt">忘记密码?</span>
       </div>
       <input type="button" class="submit-btn" value="登录" @click="handleLogin">
@@ -63,14 +64,17 @@
           .catch(this.handleLoginErr.bind(this))
       },
       handleLoginSucc (res) {
+        console.log(res)
         res && (res = res.data)
         if (res.msgCode === '1') {
-          console.log('succ')
+          this.$router.push('/')
         } else if (res.msgCode === '2') {
           this.loginNotice = true
           setTimeout(() => {
             this.loginNotice = false
           }, 2000)
+        } else {
+          this.handleLoginErr()
         }
       },
       handleLoginErr () {
@@ -152,6 +156,9 @@
           color: #fff
       .username-con
         margin: .2rem auto
+      .register
+        margin-right: .1rem
+        padding: 0 .2rem
       .forget-pass
         margin: .2rem auto .7rem
         width: 5.2rem

@@ -39,14 +39,18 @@ export default {
     return {
       list: [],
       isLoading: false,
-      isFetching: false
+      isFetching: false,
+      pageNum: 1,
+      pages: 1
     }
   },
   methods: {
     getListData () {
-      if (!this.isFetching) {
+      if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/api/community/cert.json')
+        axios.get('/api/community/cert.json', {
+          pageNum: this.pageNum
+        })
           .then(this.getListDataSucc.bind(this))
           .catch(this.getListDataError.bind(this))
       }
@@ -55,9 +59,9 @@ export default {
     getListDataSucc (res) {
       res = res ? res.data : null
       if (res && res.data) {
-        if (res.data.list) {
-          this.list = res.data.list
-        }
+        res.data.list && (this.list = res.data.list.concat(this.list))
+        res.data.pages && (this.pages = res.data.pages)
+        this.pageNum += 1
         this.isFetching = false
       } else {
         this.getListDataError()

@@ -5,7 +5,7 @@
       社区
     </router-link>
     <router-link to="channel" tag="div" class="footer-item channel">
-      <div class="iconfont footer-icon">&#xe64f;</div>
+      <div class="iconfont footer-icon">&#xe634;</div>
       频道
     </router-link>
     <router-link to="tips" tag="div" class="footer-item tips">
@@ -42,6 +42,5 @@
       .footer-icon
         font-size: .6rem
       &.router-link-active
-        .footer-icon
-          color: #ff9300
+        color: #ff9300
 </style>
