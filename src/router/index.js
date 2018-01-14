@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from 'pages/login/index'
 import Community from 'pages/home/community/index'
 import Channel from 'pages/home/channel/index'
+import Tips from 'pages/home/tips/index'
 import Register from 'pages/register/index'
 import Topic from 'pages/topic/index'
 import Special from 'pages/special/index'
@@ -51,6 +52,10 @@ export default new Router({
       path: '/cert',
       name: 'cert',
       component: Certification
+    }, {
+      path: '/tips',
+      name: 'tips',
+      component: Tips
     }
   ]
 })

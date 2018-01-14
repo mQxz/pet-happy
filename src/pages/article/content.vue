@@ -1,6 +1,12 @@
 <template>
-  <div class="content">
+  <div class="content" ref="scroll">
     <ul>
+      <transition name="loading">
+          <div class="loading" v-show="isLoading">
+            <img class="loading-img" src="../../assets/styles/img/logox2.png" alt="">
+            <span class="loading-txt">正在加载……</span>
+          </div>
+       </transition>
       <li class="content-item border-bottom"
           v-for="(item, index) in list"
           :key="index">
@@ -38,35 +44,74 @@
 
 <script>
 import axios from 'axios'
+import BScroll from 'better-scroll'
 export default {
   name: 'article-content',
   data () {
     return {
-      list: []
+      list: [],
+      isLoading: false,
+      isFetching: false
     }
   },
   methods: {
     getListData () {
-      axios.get('/api/community/article.json')
-      .then(this.getListDataSucc.bind(this))
-      .catch(this.getListDataError.bind(this))
+      if (!this.isFetching) {
+        this.isFetching = true
+        axios.get('/api/community/article.json')
+          .then(this.getListDataSucc.bind(this))
+          .catch(this.getListDataError.bind(this))
+      }
     },
 
     getListDataSucc (res) {
       res = res ? res.data : null
       if (res && res.data) {
-        this.list = res.data.list
+        if (res.data.list) {
+          this.list = res.data.list
+        }
+        this.isFetching = false
       } else {
         this.getListDataError()
       }
     },
 
     getListDataError () {
-      console.log('error')
+      this.isFetching = false
+      this.isMsgCode = true
+    },
+    createScroll () {
+      this.scroll = new BScroll(this.$refs.scroll, {
+        probeType: 3
+      })
+    },
+
+    bindEvents () {
+      this.scroll.on('scroll', this.handleScroll.bind(this))
+      this.scroll.on('scrollEnd', this.handleScrollEnd.bind(this))
+    },
+    handleScroll (e) {
+      if (e.y > 50 && !this.isLoading) {
+        this.getListData()
+        this.isLoading = true
+      }
+    },
+    handleScrollEnd () {
+      this.isLoading = false
     }
   },
   mounted () {
     this.getListData()
+    this.createScroll()
+    this.bindEvents()
+  },
+
+  watch: {
+    list () {
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
+    }
   }
 
 }
@@ -77,6 +122,17 @@ export default {
 @import '../../assets/styles/common/varibles.styl'
 .content
   flex: 1
+  overflow: hidden
+  .loading
+    text-align: center
+    color: $FontLightColor
+    .loading-img
+      height: .5rem
+      width: .5rem
+  .loading-enter-active, .loading-leave-active 
+    transition: opacity .5s
+  .loading-enter, .loading-leave-to
+    opacity: 0
   .content-item
     padding: 0 .28rem
     .item-icon

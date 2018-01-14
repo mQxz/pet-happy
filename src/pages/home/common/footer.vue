@@ -8,10 +8,10 @@
       <div class="iconfont footer-icon">&#xe64f;</div>
       频道
     </router-link>
-    <div class="footer-item tips">
+    <router-link to="tips" tag="div" class="footer-item tips">
       <div class="iconfont footer-icon">&#xe858;</div>
       小贴士
-    </div>
+    </router-link>
     <div class="footer-item mine">
       <div class="iconfont footer-icon">&#xe640;</div>
       我的
