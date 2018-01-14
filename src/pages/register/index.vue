@@ -97,7 +97,7 @@ export default {
         .catch(this.handleGetCodeErr.bind(this))
     },
     handleGetCodeSucc (res) {
-      console.log('fjdfd')
+      this.handleErrorMsg('验证码已发送')
     },
     handleGetCodeErr () {
       this.handleErrorMsg('系统繁忙，请稍后重试')
