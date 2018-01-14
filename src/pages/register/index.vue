@@ -5,15 +5,23 @@
       <div class="username-con input-con">
         <input type="text"
          class="username input"
-         placeholder="请输入你的账号"
+         placeholder="请输入您的手机号"
          maxlength="11"
          ref="username"
          @blur="handlePhoneBlur">
       </div>
+      <div class="nickname-con input-con">
+        <input type="text"
+         class="nickname input"
+         placeholder="请输入您的昵称"
+         maxlength="12"
+         ref="nickname"
+         @blur="handleNicknameBlur">
+      </div>
       <div class="password-con input-con">
         <input type="text"
          class="password input"
-         placeholder="请输入你的密码"
+         placeholder="请输入您的密码"
          maxlength="12"
          ref="password"
          @blur="handlePwdBlur">
@@ -54,7 +62,8 @@ export default {
       error: false,
       username: false,
       password: false,
-      authCode: false
+      authCode: false,
+      nickName: false
     }
   },
   methods: {
@@ -83,38 +92,40 @@ export default {
     },
 
     handleGetCodeClick () {
-      axios.get('/api/user/authCode.json')
+      axios.get('/api/user/send.json')
         .then(this.handleGetCodeSucc.bind(this))
         .catch(this.handleGetCodeErr.bind(this))
     },
     handleGetCodeSucc (res) {
-      res = res ? res.data : null
-      if (res.msgCode === 1) {
-        this.authCode = res.authCode
-        this.error = false
-        console.log(this.authCode)
-      } else {
-        this.handleGetCodeErr()
-      }
+      console.log('fjdfd')
     },
     handleGetCodeErr () {
       this.handleErrorMsg('系统繁忙，请稍后重试')
     },
     handleCodeBlur () {
-      var code = this.$refs.code.value
-      if (code === this.authCode) {
-        this.error = false
+      var authCode = this.$refs.code.value
+      if (authCode === '') {
+        this.handleErrorMsg('验证码不能为空')
       } else {
-        this.handleErrorMsg('验证码填写错误！')
+        this.authCode = authCode
+      }
+    },
+    handleNicknameBlur () {
+      var nickName = this.$refs.nickname.value
+      if (nickName === '') {
+        this.handleErrorMsg('昵称不能为空')
+      } else {
+        this.nickName = nickName
       }
     },
     handleRegClick () {
-      if (this.username && this.password && this.authCode) {
+      if (this.username && this.password && this.authCode && this.nickName) {
         this.error = false
-        // 需要改为post
         axios.get('/api/user/register.json', {
           username: this.username,
-          password: this.password
+          password: this.password,
+          nickname: this.nickName,
+          authCode: this.authCode
         }).then(this.handleRegSucc.bind(this))
           .catch(this.handleRegErr.bind(this))
       } else {
@@ -129,14 +140,16 @@ export default {
         setTimeout(() => {
           this.$router.push('/')
         }, 2000)
-      } else if (res.msgCode === 0) {
+      } else if (res.msgCode === 2) {
         this.handleErrorMsg('用户名已被注册')
+      } else if (res.msgCode === 3) {
+        this.handleErrorMsg('您的昵称被人捷足先登')
       } else {
         this.handleRegErr()
       }
     },
     handleRegErr () {
-      this.handleErrorMsg('系统繁忙，请重新注册')
+      this.handleErrorMsg('验证码错误')
     },
     handleErrorMsg (msg) {
       this.error = true
