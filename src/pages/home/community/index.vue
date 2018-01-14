@@ -3,7 +3,7 @@
     <index-header @changeType="handleChangeType"></index-header>
 
     <div class="page-content">
-      <choiceness :choiceness="choiceness" v-show="isShow"></choiceness>
+      <choiceness :choiceness="choiceness" v-show="isShow" ref="choiceness"></choiceness>
       <dynamic :dynamic="dynamic" v-show="!isShow"></dynamic>
     </div>
     
