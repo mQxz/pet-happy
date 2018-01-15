@@ -9,7 +9,7 @@
             "fans": "11.2万",
             "type": "有宠达人",
             "like": "80",
-            "signature": "你像个礼物一样，出现在我的生命里"
+            "description": "你像个礼物一样，出现在我的生命里"
         },{
             "id": "0002",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -17,7 +17,7 @@
             "fans": "939",
             "type": "有宠达人",
             "like": "4.6万",
-            "signature": "我家里有雪橇三傻还有大金毛"
+            "description": "我家里有雪橇三傻还有大金毛"
         },{
             "id": "0003",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -25,7 +25,7 @@
             "fans": "11.2万",
             "type": "有宠达人",
             "like": "80",
-            "signature": "混世大魔王"
+            "description": "混世大魔王"
         },{
             "id": "0004",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -33,7 +33,7 @@
             "fans": "11.2万",
             "type": "有宠达人",
             "like": "80",
-            "signature": "下一次还是喜欢你"
+            "description": "下一次还是喜欢你"
         },{
             "id": "0005",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -41,7 +41,7 @@
             "fans": "11.2万",
             "type": "有宠达人",
             "like": "860",
-            "signature": "职业牵犬师，宠物营养师，宠物行为学专家，犬舍主理人"
+            "description": "职业牵犬师，宠物营养师，宠物行为学专家，犬舍主理人"
         },{
             "id": "0006",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -49,7 +49,7 @@
             "fans": "1113",
             "type": "有宠达人",
             "like": "18.3万",
-            "signature": "Giving is ture having"
+            "description": "Giving is ture having"
         },{
             "id": "0007",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -57,7 +57,7 @@
             "fans": "11.2万",
             "type": "有宠达人",
             "like": "860",
-            "signature": "谢谢你的陪伴"
+            "description": "谢谢你的陪伴"
         }]
     }
 }

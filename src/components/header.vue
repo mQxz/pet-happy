@@ -36,13 +36,13 @@ export default {
     width: 1.14rem
     line-height: .88rem
     text-align: center
-    font-size: .5rem
+    font-size: .44rem
   .title
     width: 100%
     height: .88rem
     line-height: .88rem
     text-align: center
-    font-size: .4rem
+    font-size: .34rem
     
 </style>
 

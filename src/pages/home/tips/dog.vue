@@ -46,7 +46,10 @@ export default {
     }
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.scroll)
+    this.scroll = new BScroll(this.$refs.scroll, {
+      probeType: 3,
+      click: true
+    })
   }
 }
 </script>

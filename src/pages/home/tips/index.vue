@@ -38,13 +38,13 @@
       },
       handleGetCatData () {
         this.isShow = true
-        axios.get('/api/community/cat.json')
+        axios.get('/tip/list.json?id=2')
           .then(this.handleGetCatDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDogData () {
         this.isShow = false
-        axios.get('/api/community/dog.json')
+        axios.get('/tip/list.json?id=1')
           .then(this.handleGetDogDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },

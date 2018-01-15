@@ -43,7 +43,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/api/community/special.json', {
+        axios.get('/special/select.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))
@@ -69,7 +69,7 @@ export default {
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
-        probeType: 3
+        probeType: 3, click: true
       })
     },
 
@@ -109,7 +109,7 @@ export default {
 .scroller
   flex: 1
   overflow: hidden
-  background: #f5f5f5
+  background: #fff
   .loading
     text-align: center
     color: $FontLightColor
@@ -121,7 +121,7 @@ export default {
   .loading-enter, .loading-leave-to
     opacity: 0
   .content
-    background: #fff
+    background: #eee
     margin: .28rem
     border-radius: .2rem
     .content-img
@@ -141,11 +141,12 @@ export default {
           display: inline-block
           width: 66%
           font-size: $FontBigSize
+          color: #666
           ellipsis()
         .num
           display: inline-block
           float: right
-          color: $FontLightColor
+          color: #aeaeae
           font-size: $FontSmallSize
           .iconfont
             margin-right: .1rem

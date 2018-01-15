@@ -47,7 +47,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/api/community/topicList.json', {
+        axios.get('/topic/list.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))
@@ -72,7 +72,8 @@ export default {
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
-        probeType: 3
+        probeType: 3,
+        click: true
       })
     },
     bindEvents () {

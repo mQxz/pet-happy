@@ -60,7 +60,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/api/community/article.json', {
+        axios.get('/article/select.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))
@@ -86,7 +86,8 @@ export default {
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
-        probeType: 3
+        probeType: 3,
+        click: true
       })
     },
 
@@ -163,18 +164,18 @@ export default {
           justify-content: space-around
           .icon-name
             width: 4rem
-            font-size: $FontBigSize
+            font-size: $FontNormalSize
             font-weight: bold
-            color: #558bad
+            color: #ff7c7c
             ellipsis()
           .icon-time
             font-size: $FontSmallSize
             color: $FontLightColor
       .icon-btn
         height: .6rem
-        width: 1.5rem
+        width: 1.2rem
         font-size: $FontNormalSize
-        color: $bgColor
+        color: #ff7c7c
         background: #fff
         &::before
           border-color: #ccc

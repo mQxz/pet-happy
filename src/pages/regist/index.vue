@@ -29,6 +29,7 @@
       <div class="code-con input-con">
         <input type="text" 
         class="code input" 
+        maxlength="4"
         placeholder="请输入验证码"
         ref="code"
         @blur="handleCodeBlur">
@@ -92,7 +93,7 @@ export default {
     },
 
     handleGetCodeClick () {
-      axios.get('/api/user/send.json')
+      axios.get('/user/send.json')
         .then(this.handleGetCodeSucc.bind(this))
         .catch(this.handleGetCodeErr.bind(this))
     },
@@ -104,10 +105,11 @@ export default {
     },
     handleCodeBlur () {
       var authCode = this.$refs.code.value
-      if (authCode === '') {
-        this.handleErrorMsg('验证码不能为空')
-      } else {
+      const regCode = /^[0-9]{4}$/g
+      if (regCode.test(authCode)) {
         this.authCode = authCode
+      } else {
+        this.handleErrorMsg('请输入正确验证码')
       }
     },
     handleNicknameBlur () {
@@ -121,7 +123,7 @@ export default {
     handleRegClick () {
       if (this.username && this.password && this.authCode && this.nickName) {
         this.error = false
-        axios.get('/api/user/register.json', {
+        axios.get('/user/regist.json', {
           username: this.username,
           password: this.password,
           nickname: this.nickName,
@@ -133,6 +135,7 @@ export default {
       }
     },
     handleRegSucc (res) {
+      res = res ? res = res.data : null
       if (res.msgCode === 1) {
         this.handleErrorMsg('注册成功')
         setTimeout(() => {

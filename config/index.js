@@ -11,10 +11,46 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/community': {
+      '/user': {
         target: 'http://localhost:8080',
         pathRewrite: {
-          '^/api/community': '/static'
+          '^/user': '/static'
+        }
+      },
+      '/topic': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/topic': '/static/topic'
+        }
+      },
+      '/tip': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/tip': '/static/tip'
+        }
+      },
+      '/article': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/article': '/static/article'
+        }
+      },
+      '/special': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/special': '/static/special'
+        }
+      },
+      '/newpet': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/newpet': '/static/newpet'
+        }
+      },
+      '/recommend': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/recommend': '/static/recommend'
         }
       },
       '/api/channel': {
@@ -27,6 +63,12 @@ module.exports = {
         target: 'http://localhost:8080',
         pathRewrite: {
           '^/api/user': '/static'
+        }
+      },
+      '/api/community': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/api/community': '/static'
         }
       }
     },

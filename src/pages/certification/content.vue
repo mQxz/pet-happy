@@ -21,7 +21,7 @@
                     {{item.type}}</p>
                     <div class="detail-sign">
                         <p class="iconfont">&#xe604;</p>
-                        <p class="detail signature">{{item.signature}}</p>
+                        <p class="detail signature">{{item.description}}</p>
                     </div>
                 </dd>
             </dl>
@@ -74,7 +74,8 @@ export default {
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
-        probeType: 3
+        probeType: 3,
+        click: true
       })
     },
 
