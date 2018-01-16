@@ -29,7 +29,7 @@
       <div class="code-con input-con">
         <input type="text" 
         class="code input" 
-        maxlength="4"
+        maxlength="6"
         placeholder="请输入验证码"
         ref="code"
         @blur="handleCodeBlur">
@@ -93,7 +93,7 @@ export default {
     },
 
     handleGetCodeClick () {
-      axios.get('/user/send.json')
+      axios.post('/user/send.action')
         .then(this.handleGetCodeSucc.bind(this))
         .catch(this.handleGetCodeErr.bind(this))
     },
@@ -105,7 +105,7 @@ export default {
     },
     handleCodeBlur () {
       var authCode = this.$refs.code.value
-      const regCode = /^[0-9]{4}$/g
+      const regCode = /^[0-9]{6}$/g
       if (regCode.test(authCode)) {
         this.authCode = authCode
       } else {
@@ -123,7 +123,7 @@ export default {
     handleRegClick () {
       if (this.username && this.password && this.authCode && this.nickName) {
         this.error = false
-        axios.get('/user/regist.json', {
+        axios.post('/user/regist.json', {
           username: this.username,
           password: this.password,
           nickname: this.nickName,
