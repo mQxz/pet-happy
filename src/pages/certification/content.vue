@@ -95,7 +95,6 @@ export default {
   },
 
   mounted () {
-    this.getListData()
     this.createScroll()
     this.bindEvents()
   },
@@ -106,6 +105,10 @@ export default {
         this.scroll.refresh()
       })
     }
+  },
+
+  created () {
+    this.getListData()
   }
 }
 </script>
