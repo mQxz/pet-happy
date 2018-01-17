@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <index-footer></index-footer>
+    <index-footer :routerName="routerName"></index-footer>
   </div>
 </template>
 
@@ -64,11 +64,17 @@
     name: 'index',
     data () {
       return {
-        isLogin: false
+        isLogin: false,
+        routerName: ''
       }
     },
     components: {
       IndexFooter
+    },
+    beforeRouteEnter (to, from, next) {
+      next((vm) => {
+        vm.routerName = to.name
+      })
     }
   }
 </script>

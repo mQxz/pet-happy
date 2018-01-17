@@ -7,7 +7,7 @@
       <dog :dog="dog" v-show="!isShow"></dog>
     </div>
     
-    <index-footer></index-footer>
+    <index-footer :routerName="routerName"></index-footer>
   </div>
 </template>
 
@@ -23,7 +23,8 @@
       return {
         cat: {},
         dog: {},
-        isShow: true
+        isShow: true,
+        routerName: ''
       }
     },
     components: {
@@ -70,6 +71,11 @@
     },
     created () {
       this.handleGetCatData()
+    },
+    beforeRouteEnter (to, from, next) {
+      next((vm) => {
+        vm.routerName = to.name
+      })
     }
   }
 </script>
