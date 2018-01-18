@@ -29,7 +29,7 @@
         <router-link to="register" tag="span" class="register">注册</router-link>
         <span class="forget-txt">忘记密码?</span>
       </div>
-      <input type="button" class="submit-btn" value="登录" @click="handleLogin">
+      <div class="submit-btn" @click="handleLogin">登录</div>
     </div>
 
     <div class="third-container">
@@ -64,11 +64,10 @@
           .catch(this.handleLoginErr.bind(this))
       },
       handleLoginSucc (res) {
-        console.log(res)
         res && (res = res.data)
-        if (res.msgCode === '1') {
+        if (res.msgCode === 1) {
           this.$router.push('/')
-        } else if (res.msgCode === '2') {
+        } else if (res.msgCode === 0) {
           this.loginNotice = true
           setTimeout(() => {
             this.loginNotice = false
@@ -173,6 +172,7 @@
         line-height: .8rem
         font-size: .42rem
         font-weight: 900
+        text-align: center
         color: $bgColor
         background: #fff
         border-radius: .15rem

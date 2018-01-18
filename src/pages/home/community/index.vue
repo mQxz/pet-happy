@@ -7,14 +7,14 @@
       <dynamic :dynamic="dynamic" v-show="!isShow"></dynamic>
     </div>
     
-    <index-footer></index-footer>
+    <index-footer :routerName="routerName"></index-footer>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   import IndexHeader from './header'
-  import Choiceness from './choiceness'
+  import Choiceness from './choiceness/index'
   import Dynamic from './dynamic'
   import IndexFooter from '../common/footer'
   export default {
@@ -23,7 +23,8 @@
       return {
         choiceness: {},
         dynamic: [],
-        isShow: true
+        isShow: true,
+        routerName: ''
       }
     },
     components: {
@@ -36,7 +37,7 @@
       handleGetChoicenessDataSucc (res) {
         res && (res = res.data)
         if (res && res.data) {
-          if (res.msgCode === '1') {
+          if (res.msgCode === 1) {
             this.choiceness = res.data
           }
         }
@@ -44,7 +45,7 @@
       handleGetDynamicDataSucc (res) {
         res && (res = res.data)
         if (res && res.data) {
-          if (res.msgCode === '1') {
+          if (res.msgCode === 1) {
             res.data.list && (this.dynamic = res.data.list)
           }
         }
@@ -57,7 +58,9 @@
       },
       handleGetChoicenessData () {
         this.isShow = true
-        axios.get('/api/community/choiceness.json')
+        axios.get('/api/community/choiceness.json', {
+          pageNum: 1
+        })
           .then(this.handleGetChoicenessDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },
@@ -70,6 +73,11 @@
     },
     created () {
       this.handleGetChoicenessData()
+    },
+    beforeRouteEnter (to, from, next) {
+      next((vm) => {
+        vm.routerName = to.name
+      })
     }
   }
 </script>

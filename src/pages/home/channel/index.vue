@@ -8,7 +8,7 @@
       </div>
     </div>
     
-    <index-footer></index-footer>
+    <index-footer :routerName="routerName"></index-footer>
   </div>
 </template>
 
@@ -26,8 +26,9 @@
         classifyNum: [],
         list: [],
         isLoading: false,
-        isFetching: false,
-        pageNum: 1
+        pageNum: 1,
+        pages: 1,
+        routerName: ''
       }
     },
     components: {
@@ -35,6 +36,14 @@
       IndexHeader,
       Classify,
       ChannelList
+    },
+    watch: {
+      list () {
+        this.$nextTick(() => {
+          this.isLoading = false
+          this.scroller.refresh()
+        })
+      }
     },
     methods: {
       getData () {
@@ -45,8 +54,8 @@
           .catch(this.handleGetDataErr.bind(this))
       },
       getMoreList () {
-        if (!this.isFetching) {
-          this.isFetching = true
+        if (!this.isLoading && this.pageNum <= this.pages) {
+          this.isLoading = true
           axios.get('/api/channel/channel.json', {
             pageNum: this.pageNum
           })
@@ -56,19 +65,21 @@
       },
       createScroller () {
         this.scroller = new BScroll(this.$refs.wrapper, {
-          probeType: 3
+          probeType: 3,
+          click: true
         })
       },
       bindEvents () {
         this.scroller.on('scroll', this.handleScroll.bind(this))
-        this.scroller.on('scrollEnd', this.handleScrollEnd.bind(this))
       },
       handleGetDataSucc (res) {
         res && (res = res.data)
         if (res && res.data) {
-          if (res.msgCode === '1') {
+          if (res.msgCode === 1) {
             res.data.classify && (this.classifyNum = res.data.classify)
             res.data.list && (this.list = res.data.list)
+            res.data.pages && (this.pages = res.data.pages)
+            this.pageNum += 1
           }
         }
       },
@@ -76,29 +87,23 @@
         console.log('数据获取失败')
       },
       handleScroll (e) {
-        if ((e.y) < (this.scroller.maxScrollY + 100) && !this.isLoading) {
-          this.isLoading = true
+        if (e.y < (this.scroller.maxScrollY + 300) && !this.isLoading) {
           this.getMoreList()
         }
       },
       handleGetOtherDataSucc (res) {
         res && (res = res.data)
         if (res && res.data) {
-          if (res.msgCode === '1') {
+          if (res.msgCode === 1) {
             res.data.list && (this.list = this.list.concat(res.data.list))
+            res.data.pages && (this.pages = res.data.pages)
             this.pageNum += 1
           }
         }
-        this.$nextTick(() => {
-          this.isFetching = false
-        })
       },
       handleGetOtherDataErr () {
-        this.isFetching = false
-        console.log('数据获取失败')
-      },
-      handleScrollEnd () {
         this.isLoading = false
+        console.log('数据获取失败')
       }
     },
     mounted () {
@@ -109,6 +114,11 @@
     },
     created () {
       this.getData()
+    },
+    beforeRouteEnter (to, from, next) {
+      next((vm) => {
+        vm.routerName = to.name
+      })
     }
   }
 </script>
