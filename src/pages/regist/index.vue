@@ -88,7 +88,7 @@ export default {
         this.error = false
         console.log(this.password)
       } else {
-        this.handleErrorMsg('密码为6~12字母、数字或符号组合')
+        this.handleErrorMsg('密码为6-12位字母、数字和字符两两组合')
       }
     },
 
@@ -142,7 +142,7 @@ export default {
           this.$router.push('/')
         }, 2000)
       } else if (res.msgCode === 2) {
-        this.handleErrorMsg('用户名已被注册')
+        this.handleErrorMsg('手机号已被注册')
       } else if (res.msgCode === 3) {
         this.handleErrorMsg('您的昵称被人捷足先登')
       } else if (res.msgCode === 0) {
