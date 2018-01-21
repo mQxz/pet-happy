@@ -74,7 +74,6 @@ export default {
       if (reg.test(username)) {
         this.username = username
         this.error = false
-        console.log(this.username)
       } else {
         this.handleErrorMsg('您输入的手机号格式有误')
       }
@@ -86,14 +85,19 @@ export default {
       if (regPwd.test(password)) {
         this.password = password
         this.error = false
-        console.log(this.password)
       } else {
         this.handleErrorMsg('密码为6-12位字母、数字和字符两两组合')
       }
     },
 
     handleGetCodeClick () {
-      axios.post('/user/send.action')
+      var params = new URLSearchParams()
+      params.append('username', this.username)
+      axios.post('/api/user/send.action', params, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
         .then(this.handleGetCodeSucc.bind(this))
         .catch(this.handleGetCodeErr.bind(this))
     },
@@ -123,13 +127,18 @@ export default {
     handleRegClick () {
       if (this.username && this.password && this.authCode && this.nickName) {
         this.error = false
-        axios.post('/user/regist.json', {
-          username: this.username,
-          password: this.password,
-          nickname: this.nickName,
-          authCode: this.authCode
-        }).then(this.handleRegSucc.bind(this))
-          .catch(this.handleRegErr.bind(this))
+        var params = new URLSearchParams()
+        params.append('username', this.username)
+        params.append('password', this.password)
+        params.append('nickname', this.nickName)
+        params.append('authCode', this.authCode)
+        axios.post('/api/user/regist.json', params, {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
+        .then(this.handleRegSucc.bind(this))
+        .catch(this.handleRegErr.bind(this))
       } else {
         this.handleErrorMsg('请将信息填写完整')
       }

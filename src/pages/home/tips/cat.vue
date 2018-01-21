@@ -11,7 +11,7 @@
                   <h2 class="content">{{item.content}}</h2>
                   <div class="des-bom">
                     <p class="cate">{{item.cate}}</p>
-                    <span class="look"><i class="iconfont">&#xe6b8;</i>{{item.look}}</span>
+                    <span class="look"><i class="iconfont">&#xe6b8;</i>{{item.viewCount}}</span>
                   </div>
               </div>
               <div class="des-right">

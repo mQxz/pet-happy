@@ -58,7 +58,7 @@
       },
       handleGetChoicenessData () {
         this.isShow = true
-        axios.get('/api/community/choiceness.json', {
+        axios.get('/api/choiceness.json', {
           pageNum: 1
         })
           .then(this.handleGetChoicenessDataSucc.bind(this))
@@ -66,7 +66,7 @@
       },
       handleGetDynamicData () {
         this.isShow = false
-        axios.get('/api/community/dynamic.json')
+        axios.get('/static/dynamic.json')
           .then(this.handleGetDynamicDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       }

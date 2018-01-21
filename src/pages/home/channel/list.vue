@@ -18,9 +18,9 @@
         </div>
         <div class="group-content">
           <div :class="[item.imgUrl.length > 1 ? 'group-img-con-other' : 'group-img-con-1']" 
-               v-for="imgItem of item.imgUrl" 
-               :key="imgItem.id">
-            <img :src="imgItem" class="group-img">
+               v-for="(imgItem, index) of item.imgUrl" 
+               :key="index">
+            <img :src="imgItem.imgUrl" class="group-img">
           </div>
         </div>
         <div class="group-footer">
@@ -28,7 +28,7 @@
           <div class="icons-con">
             <div class="like">
               <span class="iconfont experience-icon">&#xe64c;</span>
-              {{item.likeNumber}}
+              {{item.linkNumber}}
             </div>
             <div class="comment">
               <span class="iconfont experience-icon">&#xe6be;</span>
@@ -104,6 +104,7 @@
           padding-bottom: 5.6rem
           .group-img
             width: 100%
+            height: 5.6rem
         .group-img-con-other
           overflow: hidden
           width: 2.75rem
@@ -112,6 +113,7 @@
           margin-bottom: .1rem
           .group-img
             width: 100%
+            height: 2.05rem
       .group-footer
         display: flex
         justify-content: space-between

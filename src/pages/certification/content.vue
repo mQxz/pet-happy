@@ -10,18 +10,18 @@
         <li class="item-icon  border-bottom"
                v-for="(item, index) in list" :key="index">
             <dl class="icon-dl">
-                <dt class="icon-dt"><img class="icon-img" :src="item.iconUrl" alt=""></dt>
+                <dt class="icon-dt"><img class="icon-img" :src="item.avatarURL" alt=""></dt>
                 <dd class="icon-dd">
-                    <h2 class="detail icon-name">{{item.name}}</h2>
+                    <h2 class="detail icon-name">{{item.nickname}}</h2>
                     <div class="detail detail-con">
-                        <span class="fans">粉丝 {{item.fans}}</span>
-                        <span class="like">赞 {{item.like}}</span>
+                        <span class="fans">粉丝 {{item.userIdentify.fans}}</span>
+                        <span class="like">赞 {{item.userIdentify.like}}</span>
                     </div>
                     <p class="detail type"><i class="iconfont">&#xe6ae;</i>
-                    {{item.type}}</p>
+                    {{item.userIdentify.type}}</p>
                     <div class="detail-sign">
                         <p class="iconfont">&#xe604;</p>
-                        <p class="detail signature">{{item.description}}</p>
+                        <p class="detail signature">{{item.userIdentify.description}}</p>
                     </div>
                 </dd>
             </dl>
@@ -48,7 +48,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/api/community/cert.json', {
+        axios.get('/api/identify/list.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))
@@ -57,6 +57,7 @@ export default {
     },
 
     getListDataSucc (res) {
+      console.log(res.data)
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))

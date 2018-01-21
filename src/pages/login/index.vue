@@ -39,7 +39,7 @@
       <div class="third-icon">
         <div class="iconfont">&#xe701;</div>
         <div class="iconfont">&#xe60a;</div>
-        <div class="iconfont">&#xe6b1;</div>
+        <div class="iconfont" @click="handelQQlogin">&#xe6b1;</div>
       </div>
     </div>
 
@@ -53,19 +53,29 @@
     data () {
       return {
         loginNotice: false,
+        userid: '',
         username: '',
         password: ''
       }
     },
     methods: {
       handleLogin () {
-        axios.get('/api/user/login.json')
+        var params = new URLSearchParams()
+        params.append('username', this.username)
+        params.append('password', this.password)
+        axios.post('/api/user/login.json', params, {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
           .then(this.handleLoginSucc.bind(this))
           .catch(this.handleLoginErr.bind(this))
       },
       handleLoginSucc (res) {
         res && (res = res.data)
         if (res.msgCode === 1) {
+          res.data.userId && (this.userId = res.data.userId)
+          window.localStorage.userId = this.userId
           this.$router.push('/')
         } else if (res.msgCode === 0) {
           this.loginNotice = true
@@ -78,6 +88,14 @@
       },
       handleLoginErr () {
         console.log('服务器内部错误')
+      },
+      handelQQlogin () {
+        axios.post('/api/qq/login.do')
+          .then(this.handelQQloginSucc.bind(this))
+          .catch(this.handelQQloginErr.bind(this))
+      },
+      handelQQloginSucc (res) {
+        console.log(res)
       }
     }
   }

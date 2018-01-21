@@ -55,9 +55,7 @@
       getMoreList () {
         if (this.pageNum <= this.pages) {
           this.isLoading = true
-          axios.get('/api/community/choiceness_1.json', {
-            pageNum: this.pageNum
-          })
+          axios.get('/api/shuo.json?pageNum=' + this.pageNum)
             .then(this.handleGetListSucc.bind(this))
             .catch(this.handleGetListErr.bind(this))
         }
@@ -67,6 +65,7 @@
         if (res && res.data) {
           if (res.msgCode === 1) {
             res.data.list && (this.list = this.list.concat(res.data.list))
+            console.log(this.list)
             res.data.pages && (this.pages = res.data.pages)
             this.pageNum += 1
           }

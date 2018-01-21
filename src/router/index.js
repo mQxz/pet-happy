@@ -10,6 +10,7 @@ import Special from 'pages/special/index'
 import Article from 'pages/article/index'
 import Certification from 'pages/certification/index'
 import Mine from 'pages/home/mine/index'
+import Publish from 'pages/publish/index'
 
 Vue.use(Router)
 
@@ -61,6 +62,10 @@ export default new Router({
       path: '/mine',
       name: 'mine',
       component: Mine
+    }, {
+      path: '/publish',
+      name: 'publish',
+      component: Publish
     }
   ]
 })

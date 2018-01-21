@@ -47,7 +47,7 @@
     },
     methods: {
       getData () {
-        axios.get('/api/channel/channel.json', {
+        axios.get('/api/channel/select.json', {
           pageNum: this.pageNum
         })
           .then(this.handleGetDataSucc.bind(this))
@@ -56,7 +56,7 @@
       getMoreList () {
         if (!this.isLoading && this.pageNum <= this.pages) {
           this.isLoading = true
-          axios.get('/api/channel/channel.json', {
+          axios.get('/api/channel/select.json', {
             pageNum: this.pageNum
           })
             .then(this.handleGetOtherDataSucc.bind(this))
