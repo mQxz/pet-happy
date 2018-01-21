@@ -58,7 +58,7 @@
       },
       handleGetChoicenessData () {
         this.isShow = true
-        axios.get('/static/choiceness.json', {
+        axios.get('/api/choiceness.json', {
           pageNum: 1
         })
           .then(this.handleGetChoicenessDataSucc.bind(this))
