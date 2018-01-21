@@ -4,7 +4,10 @@
     <div class="content border-bottom">
       <textarea class="user-text" autofocus="true" @input="handleTextareaChange"></textarea>
       <div class="img-container">
-        <img :src="item" class="user-img img-item" v-for="(item, index) of imgBase64" :key="index">
+        <div class="img-upload-con" v-for="(item, index) of imgBase64" :key="index">
+          <img :src="item" class="user-img img-item" />
+          <img src="../../assets/styles/img/delete.png" @click="handleImgDelete(index)" class="delete-btn"/>
+        </div>
         <div class="input-container img-item">
           <span class="iconfont plus">&#xe6f3;</span>
           <input type="file" @change="handleImgInput" class="image-input" />
@@ -39,20 +42,25 @@
     },
     methods: {
       handlePublishClick () {
-        const formDate = new FormData()
-        formDate.append('content', this.value)
-        this.files.forEach((item, index) => {
-          formDate.append('images_' + index, this.files[index])
-        })
-        const params = new URLSearchParams()
-        params.append('formDate', formDate)
-        axios.post('/api/user/publish.do', params, {
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        })
-          .then(this.handlePublishSucc.bind(this))
-          .catch(this.handlePublishErr.bind(this))
+        if (!this.value) {
+          console.log('请输入内容')
+        } else {
+          const formData = new FormData()
+          formData.append('content', this.value)
+          this.files.forEach((item, index) => {
+            formData.append('images', this.files[index])
+          })
+          console.log(formData)
+          // const params = new URLSearchParams()
+          // params.append('formData', formData)
+          axios.post('/api/user/publish.do', formData, {
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          })
+            .then(this.handlePublishSucc.bind(this))
+            .catch(this.handlePublishErr.bind(this))
+        }
       },
       handleTextareaChange (e) {
         this.value = e.target.value
@@ -67,10 +75,14 @@
         }
       },
       handlePublishSucc () {
-        console.log('发不成功')
+        console.log('发布成功')
       },
       handlePublishErr () {
         console.log('发布失败')
+      },
+      handleImgDelete (index) {
+        this.files.splice(index, 1)
+        this.imgBase64.splice(index, 1)
       }
     }
   }
@@ -92,10 +104,22 @@
         resize: none
       .img-container
         padding: .2rem 0
-        .user-img
+        .img-upload-con
+          position: relative
+          display: inline-block
           height: 1.45rem
           width: 1.45rem
           margin-right: .1rem
+          .user-img
+            width: 100%
+            height: 100%
+            border-radius: .1rem
+          .delete-btn
+            position: absolute
+            height: .3rem
+            width: .3rem
+            right: 0
+            bottom: 0
         .input-container
           position: relative
           display: inline-block
