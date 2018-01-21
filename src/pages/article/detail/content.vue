@@ -2,7 +2,7 @@
 	<div class="content">
 		<div>
       <div class="content-top">
-        <img class="top-img" src="http://img5.imgtn.bdimg.com/it/u=1002203061,3808629810&fm=27&gp=0.jpg" />
+        <img class="top-img" src="../../../assets/styles/img/topic.jpg" />
       </div>
       <div class="item">
         <dl class="item-dl">
@@ -22,7 +22,7 @@
         <div class="detail-before">
           <!-- {{list[0].detailDes}} -->
         </div>
-        <img class="detail-img" :src="list[0].detailImg" />
+        <!-- <img class="detail-img" :src="list[0].detailImg" /> -->
         <div class="detail-main">
           <!-- {{list[0].detailMain}} -->
         </div>
@@ -56,13 +56,7 @@ export default {
     },
     getDetailDataError () {
       console.log('服务器错误')
-    },
-		getDetailDataSucc () {
-			console.log(11111)
-		},
-		getDetailDataError () {
-			console.log(222222)
-		}
+    }
   },
   created () {
     this.getDetailData()

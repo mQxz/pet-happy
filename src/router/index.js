@@ -19,18 +19,15 @@ export default new Router({
     {
       path: '/',
       redirect: '/community'
-    },
-    {
+    } ,{
       path: '/community',
       name: 'community',
       component: Community
-    },
-    {
+    }, {
       path: '/channel',
       name: 'channel',
       component: Channel
-    },
-    {
+    }, {
       path: '/login',
       name: 'login',
       component: Login
@@ -63,8 +60,8 @@ export default new Router({
       name: 'mine',
       component: Mine
     }, {
-      path: '/articleDetail',
-      name: 'artDetail',
+      path: '/articledetail',
+      name: 'detail-index',
       component: ArtDetail
     }
   ]
