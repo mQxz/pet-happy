@@ -24,7 +24,10 @@
         cat: {},
         dog: {},
         isShow: true,
-        routerName: ''
+        routerName: '',
+        pageNum: 1,
+        pages: 1,
+        isLoading: false
       }
     },
     components: {

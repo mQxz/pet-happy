@@ -7,9 +7,11 @@
             <span class="loading-txt">正在加载……</span>
           </div>
        </transition>
-      <li class="content-item border-bottom"
+
+       <router-link :to='"/article/detail?id=" + item.id  '
           v-for="(item, index) in list"
-          :key="index">
+          :key="item.id">
+      <li class="content-item border-bottom">
         <div class="item-icon">
             <dl class="icon-dl">
                 <dt class="icon-dt"><img class="icon-img" :src="item.iconUrl" alt=""></dt>
@@ -38,6 +40,7 @@
             </div>   
         </div>
       </li>
+       </router-link>
     </ul>
   </div>
 </template>
@@ -69,7 +72,6 @@ export default {
     },
 
     getListDataSucc (res) {
-      console.log(res)
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))
