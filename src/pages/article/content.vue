@@ -26,15 +26,15 @@
             </div>
             <div class="detail-des">
                 <p class="des des-title">{{item.title}}</p>
-                <p class="des des-subname">{{item.subName}}</p>
+                <p class="des des-subname">{{item.content}}</p>
             </div>
         </div>
         <div class="item-bottom">
             <button class="type border"><i class="iconfont">&#xe605;</i>
-            {{item.type}}</button>
+            {{item.title_type}}</button>
             <div class="right-con">
-            <div class="like"><i class="iconfont">&#xe608;</i>{{item.like}}</div>
-            <div class="comment"><i class="iconfont">&#xe6be;</i>{{item.comment}}</div>
+            <div class="like"><i class="iconfont">&#xe608;</i>{{item.title_like}}</div>
+            <div class="comment"><i class="iconfont">&#xe6be;</i>{{item.tilte_comment}}</div>
             </div>   
         </div>
       </li>
@@ -60,7 +60,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/article/select.json', {
+        axios.get('/api/article/select.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))
@@ -69,6 +69,7 @@ export default {
     },
 
     getListDataSucc (res) {
+      console.log(res)
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))

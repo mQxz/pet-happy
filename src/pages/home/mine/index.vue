@@ -6,11 +6,11 @@
         <div class="user-box" v-show="isLogin">
           <div class="userinfo">
             <div class="user-icon">
-              <img src="http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60" class="user-img">
+              <img :src="userinfo.avatarURL" />
             </div>
             <div class="user-detail">
-              <p class="nickname">喝饮料爱咬吸管的少女</p>
-              <p class="account">账号：<span class="account-num">13552418897</span></p>
+              <p class="nickname">{{user.nickname}}</p>
+              <p class="account">账号：<span class="account-num">{{user.username}}</span></p>
             </div>
           </div>
           <div class="person">
@@ -60,12 +60,16 @@
 
 <script>
   import IndexFooter from '../common/footer'
+  import axios from 'axios'
   export default {
     name: 'index',
     data () {
       return {
         isLogin: false,
-        routerName: ''
+        routerName: '',
+        userId: '',
+        user: {},
+        userinfo: {}
       }
     },
     components: {
@@ -75,6 +79,36 @@
       next((vm) => {
         vm.routerName = to.name
       })
+    },
+    methods: {
+      getMyDetail () {
+        try {
+          if (window.localStorage.userId) {
+            this.userId = window.localStorage.userId
+            axios.get('/api/my/detail.json?id=' + this.userId)
+              .then(this.handleGetMyDetailSucc.bind(this))
+              .catch(this.handleGetMyDetailErr.bind(this))
+          }
+        } catch (e) {}
+      },
+      handleGetMyDetailSucc (res) {
+        res && (res = res.data)
+        if (res.msgCode === 1 && res.data) {
+          this.user = res.data.detail
+          this.userinfo = res.data.detail.userInfo
+          this.isLogin = true
+        }
+      },
+      handleGetMyDetailErr () {
+        console.log('服务器错误')
+        this.isLogin = false
+      }
+    },
+    created () {
+      this.getMyDetail()
+    },
+    destoryed () {
+      this.isLogin = false
     }
   }
 </script>

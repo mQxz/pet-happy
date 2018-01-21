@@ -47,7 +47,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/topic/list.json', {
+        axios.get('/api/topic/list.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))

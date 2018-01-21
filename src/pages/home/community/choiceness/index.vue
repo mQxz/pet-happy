@@ -55,7 +55,7 @@
       getMoreList () {
         if (this.pageNum <= this.pages) {
           this.isLoading = true
-          axios.get('/api/community/choiceness_1.json', {
+          axios.get('/choiceness/choiceness_1.json', {
             pageNum: this.pageNum
           })
             .then(this.handleGetListSucc.bind(this))

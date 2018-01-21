@@ -43,7 +43,7 @@ export default {
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
-        axios.get('/special/select.json', {
+        axios.get('/api/special/select.json', {
           pageNum: this.pageNum
         })
           .then(this.getListDataSucc.bind(this))

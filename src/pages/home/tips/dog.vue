@@ -4,14 +4,14 @@
         <div class="cat-icon">
           <img class="cat-img" src="../../../assets/styles/img/tips-img/dog.png" alt="">
         </div>
-        <div class="cat-detail" v-for="item in dogList" :key="item.id">
+        <div class="cat-detail" v-for="(item, index) in dogList" :key="index">
             <p class="detail-title">{{item.title}}</p>
             <div class="detail-des border-bottom">
               <div class="des-left">
                   <h2 class="content">{{item.content}}</h2>
                   <div class="des-bom">
                     <p class="cate">{{item.cate}}</p>
-                    <span class="look"><i class="iconfont">&#xe6b8;</i>{{item.look}}</span>
+                    <span class="look"><i class="iconfont">&#xe6b8;</i>{{item.viewCount}}</span>
                   </div>
               </div>
               <div class="des-right">
