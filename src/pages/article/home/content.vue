@@ -3,11 +3,11 @@
     <ul>
       <transition name="loading">
           <div class="loading" v-show="isLoading">
-            <img class="loading-img" src="../../assets/styles/img/logox2.png" alt="">
+            <img class="loading-img" src="../../../assets/styles/img/logox2.png" alt="">
             <span class="loading-txt">正在加载……</span>
           </div>
        </transition>
-      <li class="content-item border-bottom"
+      <router-link to="/articleDetail?" tag="li" class="content-item border-bottom"
           v-for="(item, index) in list"
           :key="index">
         <div class="item-icon">
@@ -37,7 +37,7 @@
             <div class="comment"><i class="iconfont">&#xe6be;</i>{{item.comment}}</div>
             </div>   
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -126,8 +126,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/styles/common/mixins.styl'
-@import '../../assets/styles/common/varibles.styl'
+@import '../../../assets/styles/common/mixins.styl'
+@import '../../../assets/styles/common/varibles.styl'
 .content
   flex: 1
   overflow: hidden

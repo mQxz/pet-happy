@@ -7,7 +7,8 @@ import Tips from 'pages/home/tips/index'
 import Register from 'pages/regist/index'
 import Topic from 'pages/topic/index'
 import Special from 'pages/special/index'
-import Article from 'pages/article/index'
+import Article from 'pages/article/home/index'
+import ArtDetail from 'pages/article/detail/index'
 import Certification from 'pages/certification/index'
 import Mine from 'pages/home/mine/index'
 
@@ -61,6 +62,10 @@ export default new Router({
       path: '/mine',
       name: 'mine',
       component: Mine
+    }, {
+      path: '/articleDetail',
+      name: 'artDetail',
+      component: ArtDetail
     }
   ]
 })

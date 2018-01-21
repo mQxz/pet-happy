@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/styles/common/varibles.styl'
+@import '../../../assets/styles/common/varibles.styl'
 .main
   display: flex
   flex-direction: column
