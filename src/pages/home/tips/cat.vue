@@ -25,31 +25,80 @@
 
 <script>
 import BScroll from 'better-scroll'
+import axios from 'axios'
 export default {
   name: 'cat',
+  data () {
+    return {
+      pageNum: 1,
+      pages: 4,
+      isLoading: false
+    }
+  },
   props: {
     cat: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
   computed: {
     catList () {
-      return this.cat.list
+      return this.cat
     }
   },
   watch: {
-    cat () {
+    catList () {
       this.$nextTick(() => {
-        this.scroll.refresh()
+        this.isLoading = false
+        this.scroller.refresh()
       })
     }
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.scroll, {
-      probeType: 3,
-      click: true
+    this.$nextTick(() => {
+      this.createScroller()
+      this.bindEvents()
     })
+  },
+  methods: {
+    bindEvents () {
+      this.scroller.on('scroll', this.handleScroll.bind(this))
+    },
+    createScroller () {
+      this.scroller = new BScroll(this.$refs.scroll, {
+        probeType: 3,
+        click: true
+      })
+    },
+    handleScroll (e) {
+      if (e.y < this.scroller.maxScrollY && !this.isLoading) {
+        this.getMoreCatList()
+      }
+    },
+    getMoreCatList () {
+      if (!this.isLoading && this.pageNum <= this.pages) {
+        this.isLoading = true
+        axios.get('/api/tip/list.json?id=2', {
+          pageNum: this.pageNum
+        })
+          .then(this.handleGetCatOtherDataSucc.bind(this))
+          .catch(this.handleGetOtherDataErr.bind(this))
+      }
+    },
+    handleGetCatOtherDataSucc (res) {
+      res && (res = res.data)
+      if (res && res.data) {
+        if (res.msgCode === 1) {
+          res.data.list && (this.cat = this.cat.concat(res.data.list))
+          res.data.pages && (this.pages = res.data.pages)
+          this.pageNum += 1
+        }
+      }
+    },
+    handleGetOtherDataErr () {
+      this.isLoading = false
+      console.log('数据获取失败')
+    }
   }
 }
 </script>

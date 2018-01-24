@@ -1,30 +1,30 @@
 <template>
-  <div class="content">
+  <div class="content" ref="scroll">
     <div>
       <div class="content-top">
-        <img class="top-img" src="http://p1.ycw.com/share/201706/15/d61a0e92e5204dcfb273dce381fc2e16_s600" />
+        <img class="top-img" src="http://img3.imgtn.bdimg.com/it/u=12470753,3814202608&fm=27&gp=0.jpg" />
       </div>
       <div class="content-main">
         <div class="main-dl">
           <div class="main-dt">
-            <img class="main-img" :src="list.iconImg" alt="" />
+            <img class="main-img" :src="article.iconUrl" alt="" />
           </div>
           <div class="main-dd">
-            <h2 class="main-name">{{list.nickname}}</h2>
-            <p class="main-time">{{list.time}}前</p>
+            <h2 class="main-name">{{article.name}}</h2>
+            <p class="main-time">{{article.time}}前</p>
           </div>
         </div>
         <button class="main-btn border"> + 关注</button>
       </div>
       <div class="detail">
-        <h2 class="detail-title">{{list.title}}</h2>
-        <p class="detail-des">{{list.detailBefore}}</p>
+        <h2 class="detail-title">{{article.title}}</h2>
+        <p class="detail-des">为你的爱宠营造一个温暖的家</p>
         <div class="detail-before">
-          {{list.detailDes}}
+          请给我一点时间，让我明白你对我的要求，请真诚对待我，这是我幸福的关键。别生我的气太长时间，也不要把我关起来当做惩罚。你有工作、娱乐、朋友，我却只有你。跟我说说话吧，即使我不明白你在说什么，却能明白你声音里的感情。
         </div>
-        <img class="detail-img" :src="list.detailImg" />
+        <img class="detail-img" :src="article.imgUrl" />
         <div class="detail-main">
-          {{list.detailMain}}
+          {{article.content}}
         </div>
       </div>
     </div>
@@ -33,31 +33,48 @@
 
 <script>
   import axios from 'axios'
+  import BScroll from 'better-scroll'
   export default {
     name: 'art-detail',
     data () {
       return {
-        list: {},
+        article: {},
         id: 1
       }
     },
     methods: {
       getDetailData () {
         this.id = this.$route.query.id
-        axios.get('/detail/articleDetail.json?id=' + this.id)
+        axios.get('/api/article/view.json' + this.id)
           .then(this.getDetailDataSucc.bind(this))
           .catch(this.getDetailDataError.bind(this))
       },
       getDetailDataSucc (res) {
         res = res ? res.data : null
         if (res.data && res.msgCode === 1) {
-          this.list = JSON.parse(JSON.stringify(res.data.list[0]))
+          this.article = res.data.article
         } else {
           this.getDetailDataError()
         }
       },
       getDetailDataError () {
         console.log('服务器错误')
+      },
+      createScroll () {
+        this.scroll = new BScroll(this.$refs.scroll, {
+          probeType: 3,
+          click: true
+        })
+      }
+    },
+    mounted () {
+      this.createScroll()
+    },
+    watch: {
+      article () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
       }
     },
     created () {
@@ -72,6 +89,7 @@
   .content
     flex: 1
     width: 100%
+    overflow: hidden
     .content-top
       height: 0
       overflow: hidden

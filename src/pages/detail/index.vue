@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <common-header :title="title"></common-header>
+    <common-header :title="title" class="header-detail"></common-header>
     <art-detail></art-detail>
   </div>
 </template>

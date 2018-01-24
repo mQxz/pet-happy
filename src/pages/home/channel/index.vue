@@ -103,7 +103,6 @@
       },
       handleGetOtherDataErr () {
         this.isLoading = false
-        console.log('数据获取失败')
       }
     },
     mounted () {
