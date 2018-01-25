@@ -8,6 +8,7 @@ import Register from 'pages/regist/index'
 import Topic from 'pages/topic/index'
 import Special from 'pages/special/index'
 import Article from 'pages/article/index'
+import Detail from 'pages/detail/index'
 import Certification from 'pages/certification/index'
 import Mine from 'pages/home/mine/index'
 import Publish from 'pages/publish/index'
@@ -20,18 +21,15 @@ export default new Router({
     {
       path: '/',
       redirect: '/community'
-    },
-    {
+    }, {
       path: '/community',
       name: 'community',
       component: Community
-    },
-    {
+    }, {
       path: '/channel',
       name: 'channel',
       component: Channel
-    },
-    {
+    }, {
       path: '/login',
       name: 'login',
       component: Login
@@ -71,6 +69,10 @@ export default new Router({
       path: '/setting',
       name: 'setting',
       component: Setting
+    }, {
+      path: '/article/detail',
+      name: 'detail',
+      component: Detail
     }
   ]
 })

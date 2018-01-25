@@ -1,5 +1,5 @@
 <template>
-  <div class="page-main">
+  <div class="page-main" ref="wrapper">
     <index-header @changeType="handleChangeType"></index-header>
 
     <div class="page-content">
@@ -21,8 +21,8 @@
     name: 'index',
     data () {
       return {
-        cat: {},
-        dog: {},
+        cat: [],
+        dog: [],
         isShow: true,
         routerName: ''
       }
@@ -53,7 +53,8 @@
         res = res ? res.data : null
         if (res && res.data) {
           if (res.msgCode === 1) {
-            this.cat = res.data
+            this.cat = res.data.list
+            res.date.pages && (this.pages = res.data.pages)
           }
         }
       },
@@ -61,7 +62,8 @@
         res = res ? res.data : null
         if (res && res.data) {
           if (res.msgCode === 1) {
-            this.dog = res.data
+            this.dog = res.data.list
+            res.date.pages && (this.pages = res.data.pages)
           }
         }
       },

@@ -1,30 +1,28 @@
 <template>
   <div class="main">
-    <common-header :title="title"></common-header>
-    <art-con></art-con>
+    <common-header :title="title" class="header-detail"></common-header>
+    <art-detail></art-detail>
   </div>
 </template>
 
 <script>
 import CommonHeader from 'components/header'
-import ArtCon from './content'
+import ArtDetail from './artdetail'
 export default {
-  name: 'articlePage',
+  name: 'detail',
   components: {
     CommonHeader,
-    ArtCon
+    ArtDetail
   },
   data () {
     return {
-      title: '文章'
+      title: '文章详情'
     }
   }
 }
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/styles/common/mixins.styl'
-@import '../../assets/styles/common/varibles.styl'
 .main
   display: flex
   flex-direction: column
