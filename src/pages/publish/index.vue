@@ -62,7 +62,6 @@
           this.files.forEach((item, index) => {
             formData.append('images', this.files[index])
           })
-          console.log(formData)
           // const params = new URLSearchParams()
           // params.append('formData', formData)
           axios.post('/api/user/publish.do', formData, {

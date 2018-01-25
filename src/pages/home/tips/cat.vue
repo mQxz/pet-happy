@@ -19,6 +19,7 @@
               </div>
             </div>
         </div>
+        <error-msg v-show="errorMsg"></error-msg>
       </div>
   </div>
 </template>
@@ -26,13 +27,15 @@
 <script>
 import BScroll from 'better-scroll'
 import axios from 'axios'
+import ErrorMsg from 'components/error'
 export default {
   name: 'cat',
   data () {
     return {
       pageNum: 1,
       pages: 4,
-      isLoading: false
+      isLoading: false,
+      errorMsg: false
     }
   },
   props: {
@@ -40,6 +43,9 @@ export default {
       type: Array,
       required: true
     }
+  },
+  components: {
+    ErrorMsg
   },
   computed: {
     catList () {
@@ -97,7 +103,7 @@ export default {
     },
     handleGetOtherDataErr () {
       this.isLoading = false
-      console.log('数据获取失败')
+      this.errorMsg = true
     }
   }
 }

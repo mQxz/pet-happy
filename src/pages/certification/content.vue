@@ -57,7 +57,6 @@ export default {
     },
 
     getListDataSucc (res) {
-      console.log(res.data)
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))
