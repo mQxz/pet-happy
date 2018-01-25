@@ -2,7 +2,7 @@
 <div class="main"  v-show="error">
   <div class="error">
     <span class="iconfont notice-icon">&#xe60e;</span>
-    <p class="error-msg" ref="errormsg">错误提示</p>
+    <p class="error-msg">请检查您的网络设置</p>
   </div>
 </div>
 </template>
@@ -12,7 +12,17 @@ export default {
   name: 'errorMsg',
   data () {
     return {
-      error: false
+      error: true
+    }
+  },
+  created () {
+    this.handleErrorMsg()
+  },
+  methods: {
+    handleErrorMsg () {
+      setTimeout(() => {
+        this.error = false
+      }, 3000)
     }
   }
 }

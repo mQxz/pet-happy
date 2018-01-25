@@ -27,6 +27,7 @@
           {{article.content}}
         </div>
       </div>
+      <error-msg v-show="errormsg"></error-msg>
     </div>
   </div>
 </template>
@@ -34,18 +35,23 @@
 <script>
   import axios from 'axios'
   import BScroll from 'better-scroll'
+  import ErrorMsg from 'components/error'
   export default {
     name: 'art-detail',
     data () {
       return {
         article: {},
-        id: 1
+        id: 1,
+        errormsg: false
       }
+    },
+    components: {
+      ErrorMsg
     },
     methods: {
       getDetailData () {
         this.id = this.$route.query.id
-        axios.get('/api/article/view.json' + this.id)
+        axios.get('/api/detail/view.json' + this.id)
           .then(this.getDetailDataSucc.bind(this))
           .catch(this.getDetailDataError.bind(this))
       },
@@ -58,7 +64,7 @@
         }
       },
       getDetailDataError () {
-        console.log('服务器错误')
+        this.errormsg = true
       },
       createScroll () {
         this.scroll = new BScroll(this.$refs.scroll, {
@@ -163,4 +169,20 @@
         line-height: .52rem
         color: #333
         font-size: $FontNormalSize
+    .error
+      z-index: 2
+      position: absolute
+      top: 50%
+      left: 50%
+      text-align: center
+      padding: .2rem
+      transform: translate(-50%, -50%)
+      font-size: .3rem
+      color: #fff
+      border-radius: .2rem
+      background: rgba(0, 0, 0, .6)
+      .notice-icon
+        font-size: .7rem
+      .error-msg
+        line-height: .5rem
 </style>
