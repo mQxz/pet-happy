@@ -12,7 +12,7 @@
       <img class="icons-img" src="../../../assets/styles/img/footer/channel_y.png" v-show="!chaShow"/>
       频道
     </router-link>
-    <router-link to="publish" tag="div" class="footer-item publish">
+    <router-link to="publish" tag="div" class="footer-item publish" @click.native="handleCheckoutLogin">
       <div class="publish-con">
         <div class="iconfont plus">&#xe6f3;</div>
       </div>
@@ -63,6 +63,15 @@
             break
         }
       }
+    },
+    methods: {
+      handleCheckoutLogin () {
+        try {
+          if (!window.localStorage.userId) {
+            this.$router.push('/login')
+          }
+        } catch (e) {}
+      }
     }
   }
 </script>
@@ -88,6 +97,7 @@
         height: 1.3rem
         width: 1.3rem
         background: #fff
+        border: .02rem solid #eee
         border-radius: .75rem
         .plus
           position: absolute

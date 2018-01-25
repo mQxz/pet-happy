@@ -22,6 +22,11 @@
         const fromDepth = from.path.split('/').length
         this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
       }
+    },
+    beforeDestroy () {
+      try {
+        window.localStorage.userId && window.localStorage.clear()
+      } catch (e) {}
     }
   }
 </script>

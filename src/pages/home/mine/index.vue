@@ -27,7 +27,7 @@
           <img src="../../../assets/styles/img/mine-img/message.png" class="set-img">
           消息
         </div>
-        <div class="set-item setting">
+        <div class="set-item setting" @click="handleSettingClick">
           <img src="../../../assets/styles/img/mine-img/mine.png" class="set-img">
           设置
         </div>
@@ -102,13 +102,13 @@
       handleGetMyDetailErr () {
         console.log('服务器错误')
         this.isLogin = false
+      },
+      handleSettingClick () {
+        this.$router.push('/setting')
       }
     },
     created () {
       this.getMyDetail()
-    },
-    destoryed () {
-      this.isLogin = false
     }
   }
 </script>

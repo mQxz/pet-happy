@@ -93,7 +93,7 @@ export default {
     handleGetCodeClick () {
       var params = new URLSearchParams()
       params.append('username', this.username)
-      axios.post('/api/user/send.action', params, {
+      axios.post('/api/user/send.json', params, {
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
         }

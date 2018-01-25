@@ -3,7 +3,7 @@
 
     <div class="check-notice" v-show="loginNotice">
       <span class="iconfont notice-icon">&#xe60e;</span>
-      <p>用户名或密码错误</p>
+      <p>{{noticeText}}</p>
     </div>
 
     <router-link to="/" class="header" tag="div">
@@ -39,7 +39,7 @@
       <div class="third-icon">
         <div class="iconfont">&#xe701;</div>
         <div class="iconfont">&#xe60a;</div>
-        <div class="iconfont" @click="handelQQlogin">&#xe6b1;</div>
+        <div class="iconfont" id="qqLoginBtn" @click="handelQQlogin">&#xe6b1;</div>
       </div>
     </div>
 
@@ -55,7 +55,8 @@
         loginNotice: false,
         userid: '',
         username: '',
-        password: ''
+        password: '',
+        noticeText: ''
       }
     },
     methods: {
@@ -79,6 +80,7 @@
           this.$router.push('/')
         } else if (res.msgCode === 0) {
           this.loginNotice = true
+          this.noticeText = '用户名或密码错误'
           setTimeout(() => {
             this.loginNotice = false
           }, 2000)
@@ -87,15 +89,24 @@
         }
       },
       handleLoginErr () {
-        console.log('服务器内部错误')
+        this.loginNotice = true
+        this.noticeText = '服务器开小差了！'
+        setTimeout(() => {
+          this.loginNotice = false
+        }, 2000)
       },
       handelQQlogin () {
-        axios.post('/api/qq/login.do')
+        axios.post('/api/qq/login.json')
           .then(this.handelQQloginSucc.bind(this))
-          .catch(this.handelQQloginErr.bind(this))
+          .catch(this.handelLoginErr.bind(this))
       },
       handelQQloginSucc (res) {
-        console.log(res)
+        res && (res = res.data)
+        if (res.msgCode === 1) {
+          try {
+            res.data.userId && (window.localStorage.userId = res.data.userId)
+          } catch (e) {}
+        }
       }
     }
   }

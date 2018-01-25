@@ -10,7 +10,7 @@
           <div class="usericon-con">
             <img :src="item.usericon" class="usericon-img">
           </div>
-          <span class="username">{{item.username}}</span>
+          <span class="username">{{item.nickname}}</span>
         </div>
         <div class="group-title">
           <span class="title-notice">#<span>{{item.lightTitle}}</span>#</span>

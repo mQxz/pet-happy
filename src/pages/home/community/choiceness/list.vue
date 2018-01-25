@@ -6,7 +6,7 @@
           <img :src="item.usericon" class="user-icon">
         </div>
         <div class="userinfo">
-          <div class="name">{{item.username}}</div>
+          <div class="name">{{item.nickname}}</div>
           <div class="position-con">
             <span class="province">{{item.province}}</span>
             <span class="city">{{item.city}}</span>
@@ -35,7 +35,7 @@
 
       <div class="comment">
         <div class="comment-item"  v-for="value of item.commentList" :key="value.id">
-          <span class="commentator">{{value.username}}</span><span class="comment-txt">：{{value.text}}</span>
+          <span class="commentator">{{value.nickname}}</span><span class="comment-txt">：{{value.text}}</span>
         </div>
         <div class="comment-item total">查看所有<span class="comment-num">{{item.number}}</span>条评论</div>
       </div>
