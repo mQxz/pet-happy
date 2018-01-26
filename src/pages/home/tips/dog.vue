@@ -85,7 +85,9 @@ export default {
       if (!this.isLoading && this.pageNum <= this.pages) {
         this.isLoading = true
         axios.get('/api/tip/list.json?id=1', {
-          pageNum: this.pageNum
+          params: {
+            pageNum: this.pageNum
+          }
         })
           .then(this.handleGetDogOtherDataSucc.bind(this))
           .catch(this.handleGetOtherDataErr.bind(this))
@@ -104,6 +106,9 @@ export default {
     handleGetOtherDataErr () {
       this.isLoading = false
       this.errorMsg = true
+      setTimeout(() => {
+        this.errorMsg = false
+      }, 2000)
     }
   }
 }

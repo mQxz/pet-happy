@@ -1,9 +1,6 @@
 <template>
   <div class="content" ref="scroll">
     <div>
-      <div class="content-top">
-        <img class="top-img" src="http://img3.imgtn.bdimg.com/it/u=12470753,3814202608&fm=27&gp=0.jpg" />
-      </div>
       <div class="content-main">
         <div class="main-dl">
           <div class="main-dt">
@@ -19,9 +16,6 @@
       <div class="detail">
         <h2 class="detail-title">{{article.title}}</h2>
         <p class="detail-des">为你的爱宠营造一个温暖的家</p>
-        <div class="detail-before">
-          请给我一点时间，让我明白你对我的要求，请真诚对待我，这是我幸福的关键。别生我的气太长时间，也不要把我关起来当做惩罚。你有工作、娱乐、朋友，我却只有你。跟我说说话吧，即使我不明白你在说什么，却能明白你声音里的感情。
-        </div>
         <img class="detail-img" :src="article.imgUrl" />
         <div class="detail-main">
           {{article.content}}
@@ -51,7 +45,7 @@
     methods: {
       getDetailData () {
         this.id = this.$route.query.id
-        axios.get('/api/detail/view.json' + this.id)
+        axios.get('/api/article/view.json?id=' + this.id)
           .then(this.getDetailDataSucc.bind(this))
           .catch(this.getDetailDataError.bind(this))
       },
@@ -65,6 +59,9 @@
       },
       getDetailDataError () {
         this.errormsg = true
+        setTimeout(() => {
+          this.errormsg = false
+        }, 2000)
       },
       createScroll () {
         this.scroll = new BScroll(this.$refs.scroll, {
@@ -96,13 +93,6 @@
     flex: 1
     width: 100%
     overflow: hidden
-    .content-top
-      height: 0
-      overflow: hidden
-      padding-bottom: 50%
-      .top-img
-        height: 3.78rem
-        width: 100%
     .content-main
       box-sizing: border-box
       height: 1.8rem
@@ -158,10 +148,6 @@
         padding-left: .2rem
         background: #eee
         margin-bottom: .3rem
-      .detail-before
-        line-height: .52rem
-        color: #333
-        font-size: $FontNormalSize
       .detail-img
         width: 100%
         height: 4.2rem

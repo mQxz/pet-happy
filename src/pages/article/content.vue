@@ -64,7 +64,9 @@ export default {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
         axios.get('/api/article/select.json', {
-          pageNum: this.pageNum
+          params: {
+            pageNum: this.pageNum
+          }
         })
           .then(this.getListDataSucc.bind(this))
           .catch(this.getListDataError.bind(this))
@@ -75,11 +77,6 @@ export default {
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))
-        if (res.data.list) {
-          for (var i = 0; i < res.data.list.length; i++) {
-            this.list.unshift(res.data.list[i])
-          }
-        }
         res.data.pages && (this.pages = res.data.pages)
         this.pageNum += 1
         this.isFetching = false

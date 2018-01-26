@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer" ref="footer">
       <div class="footer-title">选择标签</div>
       <span class="footer-item" @click="handleClickLabel">今天他长这样</span>
       <span class="footer-item" @click="handleClickLabel">封面萌宠</span>
@@ -48,56 +48,55 @@
         imgBase64: [],
         labelValue: '',
         noticeText: '',
-        loginNotice: false
+        loginNotice: false,
+        canClick: true
       }
     },
     methods: {
+      showNotice (txt) {
+        this.loginNotice = true
+        this.noticeText = txt
+        setTimeout(() => {
+          this.loginNotice = false
+        }, 2000)
+      },
       handlePublishClick () {
         if (!this.value) {
-          console.log('请输入内容')
+          this.showNotice('请输入内容')
         } else {
-          const formData = new FormData()
-          formData.append('lightTitle', this.labelValue)
-          formData.append('title', this.value)
-          this.files.forEach((item, index) => {
-            formData.append('images', this.files[index])
-          })
-          // const params = new URLSearchParams()
-          // params.append('formData', formData)
-          axios.post('/api/user/publish.do', formData, {
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest'
-            }
-          })
-            .then(this.handlePublishSucc.bind(this))
-            .catch(this.handlePublishErr.bind(this))
+          if (this.canClick) {
+            this.canClick = false
+            const formData = new FormData()
+            formData.append('lightTitle', this.labelValue)
+            formData.append('title', this.value)
+            this.files.forEach((item, index) => {
+              formData.append('images', this.files[index])
+            })
+            this.loginNotice = true
+            this.noticeText = '正在发布'
+            axios.post('/api/user/publish.do', formData, {
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            })
+              .then(this.handlePublishSucc.bind(this))
+              .catch(this.handlePublishErr.bind(this))
+          }
         }
       },
       handleTextareaChange (e) {
-        this.value = e.target.value.replace(this.labelValue, '')
+        this.value = e.target.value.replace('#' + this.labelValue + '#', '')
         let length = this.value.replace(/[^\x00-\xff]/g, '**').length
         if (length > 60) {
-          this.loginNotice = true
-          this.noticeText = '最多输入40字符'
-          setTimeout(() => {
-            this.loginNotice = false
-          }, 2000)
+          this.showNotice('最多输入40字符')
         }
       },
       handleImgInput (e) {
         if (this.files.length > 4) {
-          this.loginNotice = true
-          this.noticeText = '最多添加五张图片'
-          setTimeout(() => {
-            this.loginNotice = false
-          }, 2000)
+          this.showNotice('最多添加五张图片')
           return
         } else if (e.target.files[0].size > 1024 * 1024 * 3) {
-          this.loginNotice = true
-          this.noticeText = '图片最大3M'
-          setTimeout(() => {
-            this.loginNotice = false
-          }, 2000)
+          this.showNotice('图片最大3M')
           return
         }
         this.files.push(e.target.files[0])
@@ -108,27 +107,32 @@
         }
       },
       handlePublishSucc (res) {
+        this.canClick = true
         res && (res = res.data)
         if (res.msgCode === 1) {
           this.$router.push('/channel')
         }
       },
       handlePublishErr () {
-        this.loginNotice = true
-        this.noticeText = '服务器开小差了！！！'
-        setTimeout(() => {
-          this.loginNotice = false
-        }, 2000)
+        this.canClick = true
+        this.showNotice('请检查网络设置')
       },
       handleImgDelete (index) {
         this.files.splice(index, 1)
         this.imgBase64.splice(index, 1)
       },
       handleClickLabel (e) {
+        for (let i = 0; i < this.$refs.footer.children.length; i++) {
+          this.$refs.footer.children[i].style.color = '#999'
+        }
         e.target.style.color = '#ff7c7c'
         this.labelValue = e.target.innerHTML
         this.$refs.textarea.innerHTML = '#' + this.labelValue + '#'
       }
+    },
+    beforeRouteLeave (to, from, next) {
+      this.loginNotice = false
+      next()
     }
   }
 </script>

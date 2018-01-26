@@ -48,7 +48,9 @@ export default {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
         axios.get('/api/topic/list.json', {
-          pageNum: this.pageNum
+          params: {
+            pageNum: this.pageNum
+          }
         })
           .then(this.getListDataSucc.bind(this))
           .catch(this.getListDataError.bind(this))
