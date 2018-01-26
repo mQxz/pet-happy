@@ -17,9 +17,7 @@
         <h2 class="detail-title">{{article.title}}</h2>
         <p class="detail-des">为你的爱宠营造一个温暖的家</p>
         <img class="detail-img" :src="article.imgUrl" />
-        <div class="detail-main">
-        {{article.content}}
-        </div>
+        <div class="detail-main">{{article.content}}</div>
       </div>
       <error-msg v-show="errorMsg"></error-msg>
       </div>
@@ -72,7 +70,9 @@
       }
     },
     mounted () {
-      this.createScroll()
+      this.$nextTick(() => {
+        this.createScroll()
+      })
     },
     watch: {
       article () {

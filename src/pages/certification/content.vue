@@ -108,8 +108,10 @@ export default {
   },
 
   mounted () {
-    this.createScroll()
-    this.bindEvents()
+    this.$nextTick(() => {
+      this.createScroll()
+      this.bindEvents()
+    })
   },
 
   watch: {
