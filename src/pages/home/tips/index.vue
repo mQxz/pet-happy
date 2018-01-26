@@ -72,6 +72,9 @@
       },
       handleGetDataErr () {
         this.errorMsg = true
+        setTimeout(() => {
+          this.errorMsg = false
+        }, 2000)
       }
     },
     created () {

@@ -1,5 +1,5 @@
 <template>
-<div class="main"  v-show="error">
+<div class="main">
   <div class="error">
     <span class="iconfont notice-icon">&#xe60e;</span>
     <p class="error-msg">请检查您的网络设置</p>
@@ -9,22 +9,7 @@
 
 <script>
 export default {
-  name: 'errorMsg',
-  data () {
-    return {
-      error: true
-    }
-  },
-  created () {
-    this.handleErrorMsg()
-  },
-  methods: {
-    handleErrorMsg () {
-      setTimeout(() => {
-        this.error = false
-      }, 3000)
-    }
-  }
+  name: 'errorMsg'
 }
 </script>
 

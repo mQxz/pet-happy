@@ -24,7 +24,6 @@
       }
     },
     beforeDestroy () {
-      console.log(11111)
       try {
         window.localStorage.userId && window.localStorage.clear()
       } catch (e) {}

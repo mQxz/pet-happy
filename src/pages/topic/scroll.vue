@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="scroller" ref="scroll">
     <ul class="scroller-list">
       <transition name="loading">
@@ -23,14 +24,16 @@
             </dd>
           </dl>
       </li>
-      <div class="msg-code" v-show="isMsgCode">请检查您的网络设置！</div>
     </ul>
   </div>
+  <error-msg class="error-msg" v-show="errorMsg"></error-msg>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
 import BScroll from 'better-scroll'
+import ErrorMsg from 'components/error'
 export default {
   name: 'scroll',
   data () {
@@ -40,8 +43,12 @@ export default {
       isFetching: false,
       isMsgCode: false,
       pageNum: 1,
-      pages: 1
+      pages: 1,
+      errorMsg: false
     }
+  },
+  components: {
+    ErrorMsg
   },
   methods: {
     getListData () {
@@ -70,7 +77,10 @@ export default {
     },
     getListDataError () {
       this.isFetching = false
-      this.isMsgCode = true
+      this.errorMsg = true
+      setTimeout(() => {
+        this.errorMsg = false
+      }, 2000)
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
@@ -148,13 +158,5 @@ export default {
         font-size: .3rem
         color: #ccc
         margin-right: .1rem
-.msg-code
-  position: absolute
-  top: 0
-  right: 0
-  bottom: 0
-  left: 0
-  text-align: center
-  line-height:8rem
 </style>
 

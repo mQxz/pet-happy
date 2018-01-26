@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="content" ref="scroll">
       <ul>
         <transition name="loading">
@@ -28,11 +29,14 @@
             <button class="icon-btn border"> + 关注</button>
       </li></ul>
   </div>
+  <error-msg class="error-msg" v-show="errorMsg"></error-msg>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 import BScroll from 'better-scroll'
+import ErrorMsg from 'components/error'
 export default {
   name: 'cert',
   data () {
@@ -41,8 +45,12 @@ export default {
       isLoading: false,
       isFetching: false,
       pageNum: 1,
-      pages: 1
+      pages: 1,
+      errorMsg: false
     }
+  },
+  components: {
+    ErrorMsg
   },
   methods: {
     getListData () {
@@ -72,7 +80,10 @@ export default {
 
     getListDataError () {
       this.isFetching = false
-      this.isMsgCode = true
+      this.errorMsg = true
+      setTimeout(() => {
+        this.errorMsg = false
+      }, 2000)
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
@@ -183,11 +194,7 @@ export default {
       margin-right: .2rem
       &::before
         border-color: #ccc
-        border-radius:.3rem
-      
-
-      
-    
+        border-radius:.3rem  
 </style>
 
 

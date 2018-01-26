@@ -1,7 +1,7 @@
 <template>
-  <div class="content" ref="scroll">
-    <ul>
-      <transition name="loading">
+  <div>
+    <div class="content" ref="scroll">
+    <ul><transition name="loading">
           <div class="loading" v-show="isLoading">
             <img class="loading-img" src="../../assets/styles/img/logox2.png" alt="">
             <span class="loading-txt">正在加载……</span>
@@ -9,7 +9,7 @@
        </transition>
 
        <router-link :to='"/article/detail?id=" + item.id  '
-          v-for="(item, index) in list"
+          v-for="item in list"
           :key="item.id">
       <li class="content-item border-bottom">
         <div class="item-icon">
@@ -40,14 +40,17 @@
             </div>   
         </div>
       </li>
-       </router-link>
-    </ul>
+      </router-link>
+    </ul> 
+    </div>
+    <error-msg class="error-msg" v-show="errorMsg"></error-msg>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import BScroll from 'better-scroll'
+import ErrorMsg from 'components/error'
 export default {
   name: 'article-content',
   data () {
@@ -56,8 +59,12 @@ export default {
       isLoading: false,
       isFetching: false,
       pageNum: 1,
-      pages: 1
+      pages: 1,
+      errorMsg: false
     }
+  },
+  components: {
+    ErrorMsg
   },
   methods: {
     getListData () {
@@ -87,7 +94,10 @@ export default {
 
     getListDataError () {
       this.isFetching = false
-      this.isMsgCode = true
+      this.errorMsg = true
+      setTimeout(() => {
+        this.errorMsg = false
+      }, 2000)
     },
     createScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {
@@ -230,9 +240,6 @@ export default {
           border-radius: .2rem 
         .iconfont
           margin-right: .2rem
-
-
-
 </style>
 
 

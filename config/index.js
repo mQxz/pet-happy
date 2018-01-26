@@ -16,13 +16,6 @@ module.exports = {
           '^/api': '/api'
         }
       }
-      // ,
-      // '/detail': {
-      //   target: 'http://localhost:8080',
-      //   pathRewrite: {
-      //     '^/detail': '/static'
-      //   }
-      // }
     },
 
     // Various Dev Server settings
