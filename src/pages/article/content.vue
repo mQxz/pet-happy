@@ -1,13 +1,11 @@
 <template>
-  <div>
     <div class="content" ref="scroll">
-    <ul><transition name="loading">
+      <ul><transition name="loading">
           <div class="loading" v-show="isLoading">
             <img class="loading-img" src="../../assets/styles/img/logox2.png" alt="">
             <span class="loading-txt">正在加载……</span>
           </div>
        </transition>
-
        <router-link :to='"/article/detail?id=" + item.id  '
           v-for="item in list"
           :key="item.id">
@@ -41,10 +39,9 @@
         </div>
       </li>
       </router-link>
-    </ul> 
+      <error-msg v-show="errorMsg"></error-msg>
+      </ul>
     </div>
-    <error-msg class="error-msg" v-show="errorMsg"></error-msg>
-  </div>
 </template>
 
 <script>
@@ -81,6 +78,7 @@ export default {
     },
 
     getListDataSucc (res) {
+      this.errorMsg = false
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))

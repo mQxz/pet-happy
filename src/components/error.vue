@@ -24,7 +24,7 @@ export default {
   .error
     z-index: 2
     position: absolute
-    top: 50%
+    top: 5rem
     left: 50%
     text-align: center
     padding: .2rem

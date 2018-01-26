@@ -53,6 +53,7 @@
           .catch(this.handleGetDataErr.bind(this))
       },
       handleGetCatDataSucc (res) {
+        this.errorMsg = false
         res = res ? res.data : null
         if (res && res.data) {
           if (res.msgCode === 1) {
@@ -62,6 +63,7 @@
         }
       },
       handleGetDogDataSucc (res) {
+        this.errorMsg = false
         res = res ? res.data : null
         if (res && res.data) {
           if (res.msgCode === 1) {
@@ -71,6 +73,7 @@
         }
       },
       handleGetDataErr () {
+        console.log('首次获取失败')
         this.errorMsg = true
         setTimeout(() => {
           this.errorMsg = false

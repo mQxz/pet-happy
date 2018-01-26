@@ -19,7 +19,6 @@
               </div>
             </div>
         </div>
-        <error-msg v-show="errorMsg"></error-msg>
       </div>
   </div>
 </template>
@@ -27,15 +26,13 @@
 <script>
 import BScroll from 'better-scroll'
 import axios from 'axios'
-import ErrorMsg from 'components/error'
 export default {
   name: 'dog',
   data () {
     return {
       pageNum: 1,
       pages: 4,
-      isLoading: false,
-      errorMsg: false
+      isLoading: false
     }
   },
   props: {
@@ -43,9 +40,6 @@ export default {
       type: Array,
       required: true
     }
-  },
-  components: {
-    ErrorMsg
   },
   computed: {
     dogList () {
@@ -105,10 +99,6 @@ export default {
     },
     handleGetOtherDataErr () {
       this.isLoading = false
-      this.errorMsg = true
-      setTimeout(() => {
-        this.errorMsg = false
-      }, 2000)
     }
   }
 }

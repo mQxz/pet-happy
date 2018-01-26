@@ -1,5 +1,4 @@
 <template>
-<div>
   <div class="scroller" ref="scroll">
     <ul>
       <transition name="loading">
@@ -20,10 +19,9 @@
             <div class="des-type">《{{item.type}}》</div>
         </div>
       </li>
+    <error-msg class="error-msg" v-show="errorMsg"></error-msg>
     </ul>
   </div>
-  <error-msg class="error-msg" v-show="errorMsg"></error-msg>
-</div>
 </template>
 
 <script>
@@ -61,6 +59,7 @@ export default {
     },
 
     getListDataSucc (res) {
+      this.errorMsg = false
       res = res ? res.data : null
       if (res.data && res.msgCode === 1) {
         res.data.list && (this.list = res.data.list.concat(this.list))

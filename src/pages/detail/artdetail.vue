@@ -1,6 +1,6 @@
 <template>
-  <div class="content" ref="scroll">
-    <div>
+    <div class="content" ref="scroll">
+      <div>
       <div class="content-main">
         <div class="main-dl">
           <div class="main-dt">
@@ -18,12 +18,12 @@
         <p class="detail-des">为你的爱宠营造一个温暖的家</p>
         <img class="detail-img" :src="article.imgUrl" />
         <div class="detail-main">
-          {{article.content}}
+        {{article.content}}
         </div>
       </div>
-      <error-msg v-show="errormsg"></error-msg>
+      <error-msg v-show="errorMsg"></error-msg>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -36,7 +36,7 @@
       return {
         article: {},
         id: 1,
-        errormsg: false
+        errorMsg: false
       }
     },
     components: {
@@ -50,6 +50,7 @@
           .catch(this.getDetailDataError.bind(this))
       },
       getDetailDataSucc (res) {
+        this.errorMsg = false
         res = res ? res.data : null
         if (res.data && res.msgCode === 1) {
           this.article = res.data.article
@@ -58,9 +59,9 @@
         }
       },
       getDetailDataError () {
-        this.errormsg = true
+        this.errorMsg = true
         setTimeout(() => {
-          this.errormsg = false
+          this.errorMsg = false
         }, 2000)
       },
       createScroll () {
@@ -93,6 +94,7 @@
     flex: 1
     width: 100%
     overflow: hidden
+    position: relative
     .content-main
       box-sizing: border-box
       height: 1.8rem

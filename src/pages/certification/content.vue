@@ -1,5 +1,4 @@
 <template>
-  <div>
   <div class="content" ref="scroll">
       <ul>
         <transition name="loading">
@@ -27,9 +26,9 @@
                 </dd>
             </dl>
             <button class="icon-btn border"> + 关注</button>
-      </li></ul>
-  </div>
-  <error-msg class="error-msg" v-show="errorMsg"></error-msg>
+      </li>
+      <error-msg v-show="errorMsg"></error-msg>
+    </ul>
   </div>
 </template>
 
@@ -67,6 +66,7 @@ export default {
     },
 
     getListDataSucc (res) {
+      this.errorMsg = false
       res = res ? res.data : null
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))
