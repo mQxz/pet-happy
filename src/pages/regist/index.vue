@@ -64,7 +64,8 @@ export default {
       username: false,
       password: false,
       authCode: false,
-      nickName: false
+      nickName: false,
+      userId: ''
     }
   },
   methods: {
@@ -146,6 +147,8 @@ export default {
     handleRegSucc (res) {
       res = res ? res = res.data : null
       if (res.msgCode === 1) {
+        res.data.userId && (this.userId = res.data.userId)
+        window.localStorage.userId = this.userId
         this.handleErrorMsg('注册成功')
         setTimeout(() => {
           this.$router.push('/')

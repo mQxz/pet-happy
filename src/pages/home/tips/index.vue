@@ -6,7 +6,6 @@
       <cat :cat="cat" v-show="isShow"></cat>
       <dog :dog="dog" v-show="!isShow"></dog>
     </div>
-    <error-msg v-show="errorMsg"></error-msg>
     <index-footer :routerName="routerName"></index-footer>
   </div>
 </template>
@@ -17,7 +16,6 @@
   import Cat from './cat'
   import Dog from './dog'
   import IndexFooter from '../common/footer'
-  import ErrorMsg from 'components/error'
   export default {
     name: 'index',
     data () {
@@ -25,16 +23,14 @@
         cat: [],
         dog: [],
         isShow: true,
-        routerName: '',
-        errorMsg: false
+        routerName: ''
       }
     },
     components: {
       IndexHeader,
       Cat,
       Dog,
-      IndexFooter,
-      ErrorMsg
+      IndexFooter
     },
     methods: {
       handleChangeType (type) {
@@ -53,7 +49,6 @@
           .catch(this.handleGetDataErr.bind(this))
       },
       handleGetCatDataSucc (res) {
-        this.errorMsg = false
         res = res ? res.data : null
         if (res && res.data) {
           if (res.msgCode === 1) {
@@ -63,7 +58,6 @@
         }
       },
       handleGetDogDataSucc (res) {
-        this.errorMsg = false
         res = res ? res.data : null
         if (res && res.data) {
           if (res.msgCode === 1) {
@@ -73,11 +67,7 @@
         }
       },
       handleGetDataErr () {
-        console.log('首次获取失败')
-        this.errorMsg = true
-        setTimeout(() => {
-          this.errorMsg = false
-        }, 2000)
+        console.log('革命尚未成功，同志仍需努力！')
       }
     },
     created () {

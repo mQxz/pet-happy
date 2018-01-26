@@ -1,4 +1,7 @@
 {
-    "msgCode": 1
+    "msgCode": 1,
+    "data": {
+        "userId": "1213221"
+    }
 }
 
