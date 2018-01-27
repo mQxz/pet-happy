@@ -73,7 +73,6 @@
         }
       },
       handleGetDataErr () {
-        console.log('首次获取失败')
         this.errorMsg = true
         setTimeout(() => {
           this.errorMsg = false
