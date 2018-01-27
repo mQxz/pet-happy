@@ -67,7 +67,10 @@
         }
       },
       handleGetDataErr () {
-        console.log('革命尚未成功，同志仍需努力！')
+        this.errorMsg = true
+        setTimeout(() => {
+          this.errorMsg = false
+        }, 2000)
       }
     },
     created () {

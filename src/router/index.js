@@ -1,17 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from 'pages/login/index'
-import Community from 'pages/home/community/index'
-import Channel from 'pages/home/channel/index'
-import Tips from 'pages/home/tips/index'
-import Register from 'pages/regist/index'
-import Topic from 'pages/topic/index'
-import Special from 'pages/special/index'
-import Article from 'pages/article/index'
-import Detail from 'pages/detail/index'
-import Certification from 'pages/certification/index'
 import Mine from 'pages/home/mine/index'
-import Publish from 'pages/publish/index'
 import Setting from 'pages/home/setting/index'
 
 Vue.use(Router)
@@ -24,11 +14,11 @@ export default new Router({
     }, {
       path: '/community',
       name: 'community',
-      component: Community
+      component: () => import('pages/home/community/index')
     }, {
       path: '/channel',
       name: 'channel',
-      component: Channel
+      component: () => import('pages/home/channel/index')
     }, {
       path: '/login',
       name: 'login',
@@ -36,27 +26,27 @@ export default new Router({
     }, {
       path: '/register',
       name: 'register',
-      component: Register
+      component: () => import('pages/regist/index')
     }, {
       path: '/choiceness/topic',
       name: 'topic',
-      component: Topic
+      component: () => import('pages/topic/index')
     }, {
       path: '/choiceness/special',
       name: 'special',
-      component: Special
+      component: () => import('pages/special/index')
     }, {
       path: '/choiceness/article',
       name: 'article',
-      component: Article
+      component: () => import('pages/article/index')
     }, {
       path: '/choiceness/cert',
       name: 'cert',
-      component: Certification
+      component: () => import('pages/certification/index')
     }, {
       path: '/tips',
       name: 'tips',
-      component: Tips
+      component: () => import('pages/home/tips/index')
     }, {
       path: '/mine',
       name: 'mine',
@@ -64,7 +54,7 @@ export default new Router({
     }, {
       path: '/publish',
       name: 'publish',
-      component: Publish
+      component: () => import('pages/publish/index')
     }, {
       path: '/setting',
       name: 'setting',
@@ -72,7 +62,7 @@ export default new Router({
     }, {
       path: '/article/detail',
       name: 'detail',
-      component: Detail
+      component: () => import('pages/detail/index')
     }
   ]
 })
