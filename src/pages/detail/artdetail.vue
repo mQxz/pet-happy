@@ -67,12 +67,16 @@
       createScroll () {
         this.scroll = new BScroll(this.$refs.scroll, {
           probeType: 3,
-          click: true
+          click: true,
+          bounce: false
         })
       }
     },
     mounted () {
-      this.createScroll()
+      this.$nextTick(() => {
+        this.createScroll()
+        console.log(this.scroll)
+      })
     },
     watch: {
       article () {

@@ -76,10 +76,14 @@
         console.log('数据请求失败')
       },
       createScroller () {
-        this.scroller = new BScroll(this.$refs.wrapper, {
-          probeType: 3,
-          click: true
-        })
+        if (!this.scroller) {
+          this.scroller = new BScroll(this.$refs.wrapper, {
+            probeType: 3,
+            click: true
+          })
+        } else {
+          this.scroller.refresh()
+        }
       },
       bindEvents () {
         this.scroller.on('scroll', this.handleScroll.bind(this))
