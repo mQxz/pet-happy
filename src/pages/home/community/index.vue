@@ -15,7 +15,7 @@
   import axios from 'axios'
   import IndexHeader from './header'
   import Choiceness from './choiceness/index'
-  import Dynamic from './dynamic'
+  import Dynamic from './dynamic/index'
   import IndexFooter from '../common/footer'
   export default {
     name: 'index',
