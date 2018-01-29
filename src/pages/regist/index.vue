@@ -7,7 +7,6 @@
          class="username input"
          placeholder="请输入您的手机号"
          maxlength="11"
-         ref="username"
          @blur="handlePhoneBlur">
       </div>
       <div class="nickname-con input-con">
@@ -19,7 +18,7 @@
          @blur="handleNicknameBlur">
       </div>
       <div class="password-con input-con">
-        <input type="text"
+        <input type="password"
          class="password input"
          placeholder="请输入您的密码"
          maxlength="12"
@@ -69,8 +68,8 @@ export default {
     }
   },
   methods: {
-    handlePhoneBlur () {
-      var username = this.$refs.username.value
+    handlePhoneBlur (e) {
+      const username = e.target.value
       const reg = /^(13|15|18|17|14)\d{9}$/g
       if (reg.test(username)) {
         this.username = username
@@ -109,7 +108,7 @@ export default {
       this.handleErrorMsg('系统繁忙，请稍后重试')
     },
     handleCodeBlur () {
-      var authCode = this.$refs.code.value
+      const authCode = this.$refs.code.value
       const regCode = /^[0-9]{6}$/g
       if (regCode.test(authCode)) {
         this.authCode = authCode

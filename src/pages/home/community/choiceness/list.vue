@@ -1,5 +1,9 @@
 <template>
   <div class="list">
+    <div class="commentInput" v-show="commentShow">
+      <input type="text" class="commentText">
+      <button>评论</button>
+    </div>
     <div class="item-area" v-for="(item, index) of list" :key="index">
       <div class="item-header">
         <div class="item-icon-con">
@@ -22,28 +26,37 @@
 
       <div class="like-con">
         <div class="like-img-con">
-          <div class="like-icon" v-for="likeItem of item.usericons" :key="likeItem.id">
+          <div class="like-icon" v-for="likeItem of item.userIcons" :key="likeItem.id">
             <img :src="likeItem.iconUrl" class="like-img">
           </div>
           <span class="like-num">{{item.likeNumber}} 赞</span>
         </div>
         <div class="like-sper">
-          <span class="iconfont like-sper-icon">&#xe64c;</span>
-          <span class="iconfont like-sper-icon">&#xe6be;</span>
+          <span class="iconfont like-sper-icon" 
+                @click="handleLikeClick(item)"
+                :style="{color: item.likeshow ? '#ff7c7c' : '#333'}">
+              &#xe64c;</span>
+          <span class="iconfont like-sper-icon" @click="handleCommentClick(item)">&#xe6be;</span>
         </div>
       </div>
 
       <div class="comment">
-        <div class="comment-item"  v-for="value of item.commentList" :key="value.id">
+        <div class="comment-item" v-show="value.show"  v-for="(value, index) of item.commentList" :key="value.id">
           <span class="commentator">{{value.nickname}}</span><span class="comment-txt">：{{value.text}}</span>
         </div>
-        <div class="comment-item total">查看所有<span class="comment-num">{{item.number}}</span>条评论</div>
+        <div class="comment-item total" 
+             v-show="item.showMore"
+             @click="handleShowAllCommentClick(item)">
+          查看所有
+          <span class="comment-num">{{item.commentList.length - 4}}</span>条评论
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'index-list',
     props: {
@@ -52,9 +65,55 @@
         require: true
       }
     },
+    data () {
+      return {
+        id: '',
+        likeNum: '',
+        commentShow: true
+      }
+    },
+    watch: {
+      likeNum () {
+        return this.list
+      }
+    },
     methods: {
       handleAttentionClick (item) {
         item.show = !item.show
+      },
+      handleLikeClick (item) {
+        this.id = item.id
+        axios.get('/api/like.json', {
+          params: {
+            'id': item.id,
+            'status': !item.likeshow
+          }
+        }).then(this.handleLikeClickSucc.bind(this))
+          .catch(this.handleLikeClickErr.bind(this))
+      },
+      handleLikeClickSucc (res) {
+        res && (res = res.data)
+        if (res.msgCode === 1) {
+          res.data.likeNum && (this.likeNum = res.data.likeNum)
+          this.list.forEach((item) => {
+            if (item.id === this.id) {
+              item.likeshow = !item.likeshow
+              item.likeNumber = this.likeNum
+            }
+          })
+        }
+      },
+      handleLikeClickErr () {
+        console.log(11111)
+      },
+      handleShowAllCommentClick (item) {
+        item.showMore = !item.showMore
+        item.commentList.forEach((value) => {
+          value.show = true
+        })
+      },
+      handleCommentClick (item) {
+        console.log(item.id)
       }
     }
   }
@@ -62,6 +121,12 @@
 
 <style scoped lang="stylus">
   .list
+    position: relative
+    .commentInput
+      position: absolute
+      left: 0
+      bottom: 0
+      border: .02rem solid #999
     .item-area
       padding-bottom: .1rem
       border-bottom: .02rem solid #ccc
