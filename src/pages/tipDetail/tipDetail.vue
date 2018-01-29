@@ -10,9 +10,7 @@
             <h2 class="main-name">{{detail.nickname}}</h2>
           </div>
         </div>
-        <button class="main-btn border"
-                @click="handleFollowClick"
-                ref="follow"> + 关注</button>
+        <follow-show></follow-show>
       </div>
       <div class="detail">
         <p class="detail-des">{{detail.title}}</p>
@@ -28,34 +26,21 @@
   import axios from 'axios'
   import BScroll from 'better-scroll'
   import ErrorMsg from 'components/error'
+  import FollowShow from 'components/follow'
   export default {
     name: 'tip-detail',
     data () {
       return {
         detail: {},
         id: 1,
-        errorMsg: false,
-        followShow: true
+        errorMsg: false
       }
     },
     components: {
-      ErrorMsg
+      ErrorMsg,
+      FollowShow
     },
     methods: {
-      handleFollowClick () {
-        const followBtn = this.$refs.follow
-        if (this.followShow) {
-          followBtn.style.background = '#ff7c7c'
-          followBtn.style.color = '#fff'
-          followBtn.style.borderRadius = '0.1rem'
-          followBtn.innerHTML = '已关注'
-        } else {
-          followBtn.style.background = '#fff'
-          followBtn.style.color = '#ff7c7c'
-          followBtn.innerHTML = '+关注'
-        }
-        this.followShow = !this.followShow
-      },
       getDetailData () {
         this.id = this.$route.query.id
         console.log(this.id)
@@ -142,15 +127,6 @@
             font-size: $FontNormalSize
             color: #ff7c7c
             ellipsis()
-      .main-btn
-        height: .6rem
-        width: 1.2rem
-        font-size: $FontNormalSize
-        color: #ff7c7c
-        background: #fff
-        &::before
-          border-color: #ccc
-          border-radius:.3rem
     .detail
       padding: 0 .28rem
       .detail-des

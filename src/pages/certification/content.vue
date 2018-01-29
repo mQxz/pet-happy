@@ -25,7 +25,7 @@
                     </div>
                 </dd>
             </dl>
-            <button class="icon-btn border"> + 关注</button>
+            <follow-show></follow-show>
       </li>
       <error-msg v-show="errorMsg"></error-msg>
     </ul>
@@ -36,6 +36,7 @@
 import axios from 'axios'
 import BScroll from 'better-scroll'
 import ErrorMsg from 'components/error'
+import FollowShow from 'components/follow'
 export default {
   name: 'cert',
   data () {
@@ -49,7 +50,8 @@ export default {
     }
   },
   components: {
-    ErrorMsg
+    ErrorMsg,
+    FollowShow
   },
   methods: {
     getListData () {
@@ -187,16 +189,6 @@ export default {
             margin-right: .2rem
           .signature
             line-height: .3rem
-    .icon-btn
-      height: .6rem
-      width: 1.5rem
-      font-size: $FontNormalSize
-      color: $bgColor
-      background: #fff
-      margin-right: .2rem
-      &::before
-        border-color: #ccc
-        border-radius:.3rem  
 </style>
 
 

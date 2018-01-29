@@ -17,7 +17,7 @@
                   <p class="icon-time">{{item.time}}前</p>
                 </dd>
             </dl>
-            <button class="icon-btn border"> + 关注</button>
+            <follow-show></follow-show>
         </div>
         <router-link :to='"/article/detail?id=" + item.id'>
         <div class="item-detail border">
@@ -48,6 +48,7 @@
 import axios from 'axios'
 import BScroll from 'better-scroll'
 import ErrorMsg from 'components/error'
+import FollowShow from 'components/follow'
 export default {
   name: 'article-content',
   data () {
@@ -61,7 +62,8 @@ export default {
     }
   },
   components: {
-    ErrorMsg
+    ErrorMsg,
+    FollowShow
   },
   methods: {
     getListData () {
@@ -189,15 +191,6 @@ export default {
           .icon-time
             font-size: $FontSmallSize
             color: $FontLightColor
-      .icon-btn
-        height: .6rem
-        width: 1.2rem
-        font-size: $FontNormalSize
-        color: #ff7c7c
-        background: #fff
-        &::before
-          border-color: #ccc
-          border-radius:.3rem
     .item-detail
       padding-bottom: .3rem
       .detail-img

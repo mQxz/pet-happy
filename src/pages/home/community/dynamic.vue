@@ -30,7 +30,7 @@
               <img :src="item.usericon" class="user-icon">
             </div>
             <div class="text-con">
-              <div class="name">{{item.username}}</div>
+              <div class="name">{{item.nickname}}</div>
               <div class="time">{{item.time}}</div>
             </div>
           </div>

@@ -11,7 +11,7 @@
             <p class="main-time">{{article.time}}前</p>
           </div>
         </div>
-        <button class="main-btn border"> + 关注</button>
+        <follow-show></follow-show>
       </div>
       <div class="detail">
         <h2 class="detail-title">{{article.title}}</h2>
@@ -28,6 +28,7 @@
   import axios from 'axios'
   import BScroll from 'better-scroll'
   import ErrorMsg from 'components/error'
+  import FollowShow from 'components/follow'
   export default {
     name: 'art-detail',
     data () {
@@ -38,7 +39,8 @@
       }
     },
     components: {
-      ErrorMsg
+      ErrorMsg,
+      FollowShow
     },
     methods: {
       getDetailData () {
@@ -127,15 +129,6 @@
           .main-time
             font-size: $FontSmallSize
 					  color: $FontLightColor
-      .main-btn
-        height: .6rem
-        width: 1.2rem
-        font-size: $FontNormalSize
-        color: #ff7c7c
-        background: #fff
-        &::before
-          border-color: #ccc
-          border-radius:.3rem
     .detail
       padding: 0 .28rem
       .detail-title
