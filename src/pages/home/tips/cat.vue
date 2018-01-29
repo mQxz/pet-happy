@@ -4,7 +4,10 @@
         <div class="cat-icon">
           <img class="cat-img" src="../../../assets/styles/img/tips-img/cat00.jpg" alt="">
         </div>
-        <div class="cat-detail" v-for="item in catList" :key="item.id">
+        <router-link tag="div" class="cat-detail" 
+                     v-for="item in catList" 
+                     :to='"/tip/view?id=" + item.id'
+                     :key="item.id">
             <p class="detail-title">{{item.title}}</p>
             <div class="detail-des border-bottom">
               <div class="des-left">
@@ -18,7 +21,7 @@
                   <img class="right-img" :src="item.imgUrl" alt="">
               </div>
             </div>
-        </div>
+          </router-link>
       </div>
   </div>
 </template>

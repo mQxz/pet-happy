@@ -6,10 +6,9 @@
             <span class="loading-txt">正在加载……</span>
           </div>
        </transition>
-       <router-link :to='"/article/detail?id=" + item.id  '
+      <li class="content-item border-bottom" 
           v-for="item in list"
           :key="item.id">
-      <li class="content-item border-bottom">
         <div class="item-icon">
             <dl class="icon-dl">
                 <dt class="icon-dt"><img class="icon-img" :src="item.iconUrl" alt=""></dt>
@@ -20,6 +19,7 @@
             </dl>
             <button class="icon-btn border"> + 关注</button>
         </div>
+        <router-link :to='"/article/detail?id=" + item.id'>
         <div class="item-detail border">
             <div class="detail-img border-bottom">
                 <img class="img-url" :src="item.imgUrl" alt="">
@@ -36,9 +36,9 @@
             <div class="like"><i class="iconfont">&#xe608;</i>{{item.title_like}}</div>
             <div class="comment"><i class="iconfont">&#xe6be;</i>{{item.tilte_comment}}</div>
             </div>   
-        </div>
+        </div> 
+        </router-link>
       </li>
-      </router-link>
       <error-msg v-show="errorMsg"></error-msg>
       </ul>
     </div>

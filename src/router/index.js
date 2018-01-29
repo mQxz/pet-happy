@@ -63,6 +63,10 @@ export default new Router({
       path: '/article/detail',
       name: 'detail',
       component: () => import('pages/detail/index')
+    }, {
+      path: '/tip/view',
+      name: 'tipDetail',
+      component: () => import('pages/tipDetail/index')
     }
   ]
 })
