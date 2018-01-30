@@ -1,9 +1,5 @@
 <template>
   <div class="list">
-    <div class="commentInput" v-show="commentShow">
-      <input type="text" class="commentText">
-      <button>评论</button>
-    </div>
     <div class="item-area" v-for="(item, index) of list" :key="index">
       <div class="item-header">
         <div class="item-icon-con">
@@ -36,7 +32,7 @@
                 @click="handleLikeClick(item)"
                 :style="{color: item.likeshow ? '#ff7c7c' : '#333'}">
               &#xe64c;</span>
-          <span class="iconfont like-sper-icon" @click="handleCommentClick(item)">&#xe6be;</span>
+          <span class="iconfont like-sper-icon" @click="focusclick(item)">&#xe6be;</span>
         </div>
       </div>
 
@@ -68,8 +64,7 @@
     data () {
       return {
         id: '',
-        likeNum: '',
-        commentShow: true
+        likeNum: ''
       }
     },
     watch: {
@@ -114,6 +109,15 @@
       },
       handleCommentClick (item) {
         console.log(item.id)
+      },
+      focusclick (item) {
+        try {
+          if (window.localStorage.userId) {
+            this.$emit('clickComment', item.id)
+          } else {
+            this.$router.push('/login')
+          }
+        } catch (e) {}
       }
     }
   }
@@ -121,12 +125,6 @@
 
 <style scoped lang="stylus">
   .list
-    position: relative
-    .commentInput
-      position: absolute
-      left: 0
-      bottom: 0
-      border: .02rem solid #999
     .item-area
       padding-bottom: .1rem
       border-bottom: .02rem solid #ccc

@@ -58,7 +58,6 @@
       },
       getDetailData () {
         this.id = this.$route.query.id
-        console.log(this.id)
         axios.get('/api/tip/view.json', {
           params: {
             id: this.id
@@ -68,6 +67,7 @@
           .catch(this.getDetailDataError.bind(this))
       },
       getDetailDataSucc (res) {
+        console.log(this.id)
         this.errorMsg = false
         res = res ? res.data : null
         if (res.data && res.msgCode === 1) {
