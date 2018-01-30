@@ -68,10 +68,14 @@ export default {
       this.scroller.on('scroll', this.handleScroll.bind(this))
     },
     createScroller () {
-      this.scroller = new BScroll(this.$refs.scroll, {
-        probeType: 3,
-        click: true
-      })
+      if (!this.scroller) {
+        this.scroller = new BScroll(this.$refs.scroll, {
+          probeType: 3,
+          click: true
+        })
+      } else {
+        this.scroller.refresh()
+      }
     },
     handleScroll (e) {
       if (e.y < this.scroller.maxScrollY && !this.isLoading) {

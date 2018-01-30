@@ -99,7 +99,7 @@
         }
       },
       handleLikeClickErr () {
-        console.log(11111)
+        console.log('请检查网络连接')
       },
       handleShowAllCommentClick (item) {
         item.showMore = !item.showMore
