@@ -7,7 +7,7 @@
           </div>
        </transition>
       <li class="content-item border-bottom" 
-          v-for="(item, index) in list"
+          v-for="item in list"
           :key="item.id">
         <div class="item-icon">
             <dl class="icon-dl">
@@ -35,9 +35,10 @@
             {{item.title_type}}</button>
             <div class="right-con">
             <div class="like">
-              <i class="iconfont nolike" v-show="like" @click="handleLikeClick(index)">&#xe608;</i>
-              <i class="iconfont liked" v-show="!like" @click="handleNoLikeClick(index)">&#xe608;</i>
-              <i class="like-num" ref="likeNum">{{item.title_like}}</i>
+              <i class="iconfont" 
+              :style="{color: item.like_status ? '#ff7c7c' : '#333'}"
+               @click="handleLikeClick(item)">&#xe608;</i>
+              <i class="like-num">{{item.title_like}}</i>
             </div>
             <div class="comment"><i class="iconfont">&#xe6be;</i>{{item.tilte_comment}}</div>
             </div>   
@@ -63,8 +64,8 @@ export default {
       pageNum: 1,
       pages: 1,
       errorMsg: false,
-      like: true,
-      num: 1
+      likeNum: '',
+      id: ''
     }
   },
   components: {
@@ -72,16 +73,31 @@ export default {
     FollowShow
   },
   methods: {
-    handleLikeClick (index) {
-      console.log(this.num)
-      this.like = false
-      this.num = this.num + 1
-      this.$refs.likeNum[index].innerText = this.num
+    handleLikeClick (item) {
+      this.id = item.id
+      axios.get('/api/article/like.json', {
+        params: {
+          'id': item.id,
+          'status': !item.like_status
+        }
+      }).then(this.handleLikeClickSucc.bind(this))
+        .catch(this.handleLikeClickErr.bind(this))
     },
-    handleNoLikeClick (index) {
-      this.like = true
-      this.num = this.num - 1
-      this.$refs.likeNum[index].innerText = this.num
+    handleLikeClickSucc (res) {
+      res && (res = res.data)
+      if (res.msgCode === 1) {
+        res.data.title_like && (this.likeNum = res.data.title_like)
+        this.list.forEach((item) => {
+          console.log(this.id)
+          if (item.id === this.id) {
+            item.like_status = !item.like_status
+            item.title_like = this.likeNum
+          }
+        })
+      }
+    },
+    handleLikeClickErr () {
+      console.log('false')
     },
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
@@ -241,8 +257,6 @@ export default {
          margin-right: .3rem
         .iconfont
           margin-right: .1rem
-        .liked
-          color: red
       .type
         height: .6rem
         padding: 0 .2rem

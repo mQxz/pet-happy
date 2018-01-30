@@ -12,7 +12,8 @@
             "subName": "香酥可口，低脂健康美味小零食",
             "title_type": "汪星人俱乐部",
             "title_like": "80",
-            "tilte_comment": "8"
+            "tilte_comment": "8",
+            "like_status": false
         },{
             "id": "0002",
             "iconUrl": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3010270513,3463732945&fm=27&gp=0.jpg",
@@ -23,7 +24,8 @@
             "subName": "记录毛栗子的一则趣事儿",
             "title_type": "汪星人俱乐部",
             "title_like": "80",
-            "tilte_comment": "8"
+            "tilte_comment": "8",
+            "like_status": false
         },{
             "id": "0003",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -34,7 +36,8 @@
             "subName": "香酥可口，低脂健康美味小零食",
             "title_type": "汪星人俱乐部",
             "title_like": "80",
-            "tilte_comment": "8"
+            "tilte_comment": "8",
+            "like_status": false
         },{
             "id": "0004",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -45,7 +48,8 @@
             "subName": "香酥可口，低脂健康美味小零食",
             "title_type": "汪星人俱乐部",
             "title_like": "80",
-            "tilte_comment": "8"
+            "tilte_comment": "8",
+            "like_status": false
         },{
             "id": "0005",
             "iconUrl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3933693337,1309559072&fm=27&gp=0.jpg",
@@ -56,7 +60,8 @@
             "subName": "香酥可口，低脂健康美味小零食",
             "title_type": "汪星人俱乐部",
             "title_like": "80",
-            "tilte_comment": "8"
+            "tilte_comment": "8",
+            "like_status": false
         }]
     }
 }
