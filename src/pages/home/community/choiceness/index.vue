@@ -6,7 +6,7 @@
       
       <icons-tab></icons-tab>
 
-      <index-list :list="list"></index-list>
+      <index-list :list="list" @clickComment="handleClickComment"></index-list>
     </div>
   </div>
 </template>
@@ -89,9 +89,16 @@
         this.scroller.on('scroll', this.handleScroll.bind(this))
       },
       handleScroll (e) {
+        this.$emit('choicenessScroll')
         if (e.y < (this.scroller.maxScrollY + 300) && !this.isLoading) {
           this.getMoreList()
         }
+      },
+      handleClickComment (id) {
+        this.$emit('clickComment', id)
+      },
+      getList () {
+        return this.list
       }
     },
     mounted () {
