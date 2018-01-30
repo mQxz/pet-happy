@@ -65,7 +65,6 @@
         if (res && res.data) {
           if (res.msgCode === 1) {
             res.data.list && (this.list = this.list.concat(res.data.list))
-            console.log(this.list)
             res.data.pages && (this.pages = res.data.pages)
             this.pageNum += 1
           }
@@ -79,7 +78,8 @@
         if (!this.scroller) {
           this.scroller = new BScroll(this.$refs.wrapper, {
             probeType: 3,
-            click: true
+            click: true,
+            bounce: false
           })
         } else {
           this.scroller.refresh()

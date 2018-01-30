@@ -5,24 +5,23 @@
       <div class="icons">
         <div class="icons-con">
           <div class="icons-item topic">
-            <img src="../../../assets/styles/img/icon_topic.png" class="icon">
+            <img src="../../../../assets/styles/img/dynamic/remmond.png" class="icon">
             推荐
           </div>
           <div class="icons-item spetopic">
-            <img src="../../../assets/styles/img/icon_spetopic.png" class="icon">
+            <img src="../../../../assets/styles/img/dynamic/new.png" class="icon">
             最新
           </div>
           <div class="icons-item message">
-            <img src="../../../assets/styles/img/icon_article.png" class="icon">
+            <img src="../../../../assets/styles/img/dynamic/single.png" class="icon">
             颜值
           </div>
           <div class="icons-item pzn">
-            <img src="../../../assets/styles/img/icon_pzn.png" class="icon">
+            <img src="../../../../assets/styles/img/dynamic/star.png" class="icon">
             明星
           </div>
         </div>
-      </div>
-      
+      </div>    
       <div class="list">
         <div class="item-area" v-for="item of dynamic" :key="item.id">
           <div class="item-header">
@@ -52,13 +51,15 @@
           </div>
         </div>
       </div>
-
+      <list :dynamic="dynamic"></list>
+      
     </div>
   </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll'
+  import List from './list'
   export default {
     name: 'dynamic',
     props: {
@@ -66,6 +67,9 @@
         type: Array,
         require: true
       }
+    },
+    components: {
+      List
     },
     watch: {
       dynamic () {
@@ -76,7 +80,9 @@
     },
     mounted () {
       this.$nextTick(() => {
-        this.scroller = new BScroll(this.$refs.wrapper)
+        this.scroller = new BScroll(this.$refs.wrapper, {
+          bounce: false
+        })
       })
     }
   }
@@ -87,14 +93,14 @@
     height: 100%
     overflow: hidden
     .icons
-      height: 2rem
       background: #f5f5f5
       .icons-con
         display: flex
         justify-content:space-around
         align-items: center
-        height: 1.8rem
+        height: 2.2rem
         background: #fff
+        border-bottom: .02rem solid #ccc
         .icons-item
           display: flex
           flex-direction: column

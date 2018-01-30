@@ -23,7 +23,7 @@
       </div>
       <div class="password-con input-con">
         <i class="iconfont input-icon">&#xe6a1;</i>
-        <input type="text" class="password input" placeholder="请输入你的密码" v-model="password">
+        <input type="password" class="password input" placeholder="请输入你的密码" v-model="password">
       </div>
       <div class="forget-pass">
         <router-link to="register" tag="span" class="register">注册</router-link>

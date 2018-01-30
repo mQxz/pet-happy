@@ -25,6 +25,7 @@
         {
           "id": "0001",
           "show": false,
+          "likeshow": false,
           "usericon": "http://p1.ycw.com/other/201708/01/e785d32002affe6be615942962882848_s60",
           "username": "极品二哈",
           "title": "以后夸我请用“俊”",
@@ -47,32 +48,50 @@
             }
           ],
           "number": "83",
+          "showMore": true,
           "commentList": [
             {
               "id": "0001",
               "username": "少城",
-              "text": "喜欢你宝贝"
+              "text": "喜欢你宝贝",
+              "show": true
             },
             {
               "id": "0002",
               "username": "看着天空发呆的疯子",
-              "text": "是的呀，二脸懵逼"
+              "text": "是的呀，二脸懵逼",
+              "show": true
             },
             {
               "id": "0003",
               "username": "Lemon爹妈",
-              "text": "哈哈哈，懂流行"
+              "text": "哈哈哈，懂流行",
+              "show": true
             },
             {
               "id": "0004",
               "username": "一只小仓的呆萌日常",
-              "text": "我能说你太帅了吗"
+              "text": "我能说你太帅了吗",
+              "show": true
+            },
+            {
+              "id": "0003",
+              "username": "Lemon爹妈",
+              "text": "哈哈哈，懂流行",
+              "show": false
+            },
+            {
+              "id": "0004",
+              "username": "一只小仓的呆萌日常",
+              "text": "我能说你太帅了吗",
+              "show": false
             }
           ]
         },
         {
           "id": "0002",
           "show": true,
+          "likeshow": false,
           "usericon": "http://p1.ycw.com/201605/23/5eea15d7e180cf8b509d022f6e11e617_s60",
           "username": "懵逼的狗子",
           "title": "夏花绚烂，似水流连",
@@ -95,32 +114,12 @@
             }
           ],
           "number": "83",
-          "commentList": [
-            {
-              "id": "0001",
-              "username": "少城",
-              "text": "喜欢你宝贝"
-            },
-            {
-              "id": "0002",
-              "username": "看着天空发呆的疯子",
-              "text": "是的呀，二脸懵逼"
-            },
-            {
-              "id": "0003",
-              "username": "Lemon爹妈",
-              "text": "哈哈哈，懂流行"
-            },
-            {
-              "id": "0004",
-              "username": "一只小仓的呆萌日常",
-              "text": "我能说你太帅了吗"
-            }
-          ]
+          "commentList": []
         },
         {
           "id": "0003",
           "show": false,
+          "likeshow": false,
           "usericon": "http://p1.ycw.com/other/201707/16/82db3528a740ee3a57aadaa1e35ac096_s60",
           "username": "Lemo爹妈",
           "title": "做最好的自己，被最好的人爱",
@@ -143,32 +142,26 @@
           ],
           "likeNumber": "156",
           "number": "83",
+          "showMore": false,
           "commentList": [
             {
               "id": "0001",
               "username": "少城",
-              "text": "喜欢你宝贝"
+              "text": "喜欢你宝贝",
+              "show": true
             },
             {
               "id": "0002",
               "username": "看着天空发呆的疯子",
-              "text": "是的呀，二脸懵逼"
-            },
-            {
-              "id": "0003",
-              "username": "Lemon爹妈",
-              "text": "哈哈哈，懂流行"
-            },
-            {
-              "id": "0004",
-              "username": "一只小仓的呆萌日常",
-              "text": "我能说你太帅了吗"
+              "text": "是的呀，二脸懵逼",
+              "show": true
             }
           ]
         },
         {
           "id": "0004",
           "show": false,
+          "likeshow": false,
           "usericon": "http://p1.ycw.com/other/201611/13/8bdedd28ee9c7477b5e29517397c51ec_s60",
           "username": "你认识我吗",
           "title": "We are 伐木累",
@@ -191,32 +184,38 @@
           ],
           "likeNumber": "156",
           "number": "83",
+          "showMore": false,
           "commentList": [
             {
               "id": "0001",
               "username": "少城",
-              "text": "喜欢你宝贝"
+              "text": "喜欢你宝贝",
+              "show": true
             },
             {
               "id": "0002",
               "username": "看着天空发呆的疯子",
-              "text": "是的呀，二脸懵逼"
+              "text": "是的呀，二脸懵逼",
+              "show": true
             },
             {
               "id": "0003",
               "username": "Lemon爹妈",
-              "text": "哈哈哈，懂流行"
+              "text": "哈哈哈，懂流行",
+              "show": true
             },
             {
               "id": "0004",
               "username": "一只小仓的呆萌日常",
-              "text": "我能说你太帅了吗"
+              "text": "我能说你太帅了吗",
+              "show": true
             }
           ]
         },
         {
           "id": "0005",
           "show": true,
+          "likeshow": false,
           "usericon": "http://p1.ycw.com/other/201611/13/8bdedd28ee9c7477b5e29517397c51ec_s60",
           "username": "懵逼的蓝天",
           "title": "来自帅狗子的真实自白",
@@ -238,33 +237,39 @@
             }
           ],
           "likeNumber": "156",
-          "number": "83",          
+          "number": "83", 
+          "showMore": false,         
           "commentList": [
             {
               "id": "0001",
               "username": "少城",
-              "text": "喜欢你宝贝"
+              "text": "喜欢你宝贝",
+              "show": true
             },
             {
               "id": "0002",
               "username": "看着天空发呆的疯子",
-              "text": "是的呀，二脸懵逼"
+              "text": "是的呀，二脸懵逼",
+              "show": true
             },
             {
               "id": "0003",
               "username": "Lemon爹妈",
-              "text": "哈哈哈，懂流行"
+              "text": "哈哈哈，懂流行",
+              "show": true
             },
             {
               "id": "0004",
               "username": "一只小仓的呆萌日常",
-              "text": "我能说你太帅了吗"
+              "text": "我能说你太帅了吗",
+              "show": true
             }
           ]
         },
         {
           "id": "0006",
           "show": false,
+          "likeshow": false,
           "usericon": "http://p1.ycw.com/201602/01/357c7a2f321d050c13ef48bfe2a685f3_s60",
           "username": "少城",
           "title": "美丽的大脸盘子",
@@ -287,26 +292,31 @@
           ],
           "likeNumber": "156",
           "number": "83",
+          "showMore": false,
           "commentList": [
             {
               "id": "0001",
               "username": "少城",
-              "text": "喜欢你宝贝"
+              "text": "喜欢你宝贝",
+              "show": true
             },
             {
               "id": "0002",
               "username": "看着天空发呆的疯子",
-              "text": "是的呀，二脸懵逼"
+              "text": "是的呀，二脸懵逼",
+              "show": true
             },
             {
               "id": "0003",
               "username": "Lemon爹妈",
-              "text": "哈哈哈，懂流行"
+              "text": "哈哈哈，懂流行",
+              "show": true
             },
             {
               "id": "0004",
               "username": "一只小仓的呆萌日常",
-              "text": "我能说你太帅了吗"
+              "text": "我能说你太帅了吗",
+              "show": true
             }
           ]
         }
