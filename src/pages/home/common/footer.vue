@@ -12,7 +12,7 @@
       <img class="icons-img" src="../../../assets/styles/img/footer/channel_y.png" v-show="!chaShow"/>
       频道
     </router-link>
-    <router-link to="publish" tag="div" class="footer-item publish" @click.native="handleCheckoutLogin">
+    <router-link to="publish" tag="div" class="footer-item publish">
       <div class="publish-con">
         <div class="iconfont plus">&#xe6f3;</div>
       </div>
@@ -29,7 +29,7 @@
       <img class="icons-img" src="../../../assets/styles/img/footer/mine_y.png" v-show="!mineShow"/>
       我的
     </router-link>
-  </div>
+</div>
 </template>
 
 <script>
@@ -63,21 +63,13 @@
             break
         }
       }
-    },
-    methods: {
-      handleCheckoutLogin () {
-        try {
-          if (!window.localStorage.userId) {
-            this.$router.push('/login')
-          }
-        } catch (e) {}
-      }
     }
   }
 </script>
 
 <style scoped lang="stylus">
   .footer
+    z-index: 2
     display: flex
     justify-content: space-between
     align-items: center

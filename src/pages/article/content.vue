@@ -7,7 +7,7 @@
           </div>
        </transition>
       <li class="content-item border-bottom" 
-          v-for="item in list"
+          v-for="(item, index) in list"
           :key="item.id">
         <div class="item-icon">
             <dl class="icon-dl">
@@ -29,15 +29,19 @@
                 <p class="des des-subname">{{item.content}}</p>
             </div>
         </div>
+        </router-link>
         <div class="item-bottom">
             <button class="type border"><i class="iconfont">&#xe605;</i>
             {{item.title_type}}</button>
             <div class="right-con">
-            <div class="like"><i class="iconfont">&#xe608;</i>{{item.title_like}}</div>
+            <div class="like">
+              <i class="iconfont nolike" v-show="like" @click="handleLikeClick(index)">&#xe608;</i>
+              <i class="iconfont liked" v-show="!like" @click="handleNoLikeClick(index)">&#xe608;</i>
+              <i class="like-num" ref="likeNum">{{item.title_like}}</i>
+            </div>
             <div class="comment"><i class="iconfont">&#xe6be;</i>{{item.tilte_comment}}</div>
             </div>   
-        </div> 
-        </router-link>
+        </div>
       </li>
       <error-msg v-show="errorMsg"></error-msg>
       </ul>
@@ -58,7 +62,9 @@ export default {
       isFetching: false,
       pageNum: 1,
       pages: 1,
-      errorMsg: false
+      errorMsg: false,
+      like: true,
+      num: 1
     }
   },
   components: {
@@ -66,6 +72,17 @@ export default {
     FollowShow
   },
   methods: {
+    handleLikeClick (index) {
+      console.log(this.num)
+      this.like = false
+      this.num = this.num + 1
+      this.$refs.likeNum[index].innerText = this.num
+    },
+    handleNoLikeClick (index) {
+      this.like = true
+      this.num = this.num - 1
+      this.$refs.likeNum[index].innerText = this.num
+    },
     getListData () {
       if (!this.isFetching && this.pageNum <= this.pages) {
         this.isFetching = true
@@ -85,6 +102,7 @@ export default {
       if (res && res.data) {
         res.data.list && (this.list = res.data.list.concat(this.list))
         res.data.pages && (this.pages = res.data.pages)
+        res.data.title_like && (this.num = parseInt(res.data.title_like))
         this.pageNum += 1
         this.isFetching = false
       } else {
@@ -223,6 +241,8 @@ export default {
          margin-right: .3rem
         .iconfont
           margin-right: .1rem
+        .liked
+          color: red
       .type
         height: .6rem
         padding: 0 .2rem

@@ -60,6 +60,18 @@
           this.loginNotice = false
         }, 2000)
       },
+      handleUserLogin () {
+        try {
+          if (!window.localStorage.userId) {
+            this.loginNotice = true
+            this.noticeText = '请先登录'
+            setTimeout(() => {
+              this.loginNotice = false
+              this.$router.push('/login')
+            }, 2000)
+          }
+        } catch (e) {}
+      },
       handlePublishClick () {
         if (!this.value) {
           this.showNotice('请输入内容')
@@ -130,6 +142,9 @@
         this.$refs.textarea.innerHTML = '#' + this.labelValue + '#'
       }
     },
+    created () {
+      this.handleUserLogin()
+    },
     beforeRouteLeave (to, from, next) {
       this.loginNotice = false
       next()
@@ -144,10 +159,9 @@
       z-index: 2
       position: absolute
       width: 3rem
-      height: 2.5rem
       top: 50%
       left: 50%
-      line-height: 1.2rem
+      line-height: 1rem
       text-align: center
       transform: translate(-50%, -50%)
       font-size: .3rem
