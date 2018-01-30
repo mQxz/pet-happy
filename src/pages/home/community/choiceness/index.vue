@@ -43,6 +43,9 @@
       choiceness () {
         this.slider = this.choiceness.slider
         this.list = this.choiceness.userList.list
+        this.$nextTick(() => {
+          this.scroller.refresh()
+        })
       },
       list () {
         this.$nextTick(() => {
@@ -79,7 +82,7 @@
           this.scroller = new BScroll(this.$refs.wrapper, {
             probeType: 3,
             click: true,
-            bounce: false
+            scrollY: true
           })
         } else {
           this.scroller.refresh()
@@ -99,6 +102,9 @@
       },
       getList () {
         return this.list
+      },
+      scrollRefresh () {
+        this.scroller.refresh()
       }
     },
     mounted () {

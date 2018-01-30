@@ -1,7 +1,7 @@
 <template>
   <div class="page-main">
     <div class="comment-input" v-show="commentShow" ref="inputContainer" @input="handleCommentInput">
-      <input type="text" class="comment-text" ref="comInput">
+      <input type="text" class="comment-text" ref="comInput" @focus="handleInputFocus">
       <button class="comment-btn" @click="handleCommentPublish">完成</button>
     </div>
 
@@ -52,6 +52,7 @@
         if (res && res.data) {
           if (res.msgCode === 1) {
             this.choiceness = res.data
+            this.$refs.choiceness.scrollRefresh()
           }
         }
       },
@@ -87,8 +88,12 @@
       },
       handleClickComment (id) {
         this.id = id
-        this.$refs.comInput.focus()
         this.commentShow = true
+      },
+      handleInputFocus () {
+        setTimeout(() => {
+          this.$refs.inputContainer.scrollIntoView(true)
+        }, 200)
       },
       handleCommentInput (e) {
         this.commentValue = e.target.value
